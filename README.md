@@ -1,123 +1,49 @@
 # QuerySense Pro
 
-QuerySense Pro is a production-style e-commerce query understanding and product retrieval system.
+QuerySense Pro is a production-style NLP project for e-commerce search query understanding.
 
-The goal is to simulate a real search-query intelligence system similar to those used in large e-commerce platforms.
+It normalizes noisy user queries, extracts structured entities, predicts search intent using a hybrid rule-based and machine learning approach, evaluates model behavior with detailed metrics, and exposes predictions through a FastAPI endpoint.
 
-The system takes noisy user search queries and performs:
+## Features
 
-* Query normalization
-* Query rewriting
-* Intent classification
-* Entity extraction
-* Category prediction
-* Filter recommendation
-* Lexical retrieval with BM25
-* Semantic retrieval with embeddings
-* Hybrid ranking
-* API inference with FastAPI
-* Active learning for annotation
-* Evaluation and error analysis
+- Query normalization and typo correction
+- Product catalog validation with Pydantic
+- Synthetic query generation
+- Rule-based entity extraction
+- Entity extraction evaluation
+- TF-IDF + Logistic Regression intent classification
+- Hybrid rule + ML intent prediction
+- Classification reports and confusion matrices
+- Reusable intent prediction service
+- FastAPI endpoint for intent prediction
+- Unit and API tests
+- Ruff linting
 
----
-
-## Example
-
-Input:
+## Project structure
 
 ```text
-iphon blak
+querysense-pro/
+├── configs/
+├── data/
+│   ├── samples/
+│   └── processed/
+├── models/
+├── scripts/
+├── src/querysense/
+│   ├── api/
+│   ├── data/
+│   ├── evaluation/
+│   ├── query_understanding/
+│   └── training/
+└── tests/
 ```
 
-Output:
-
-```json
-{
-  "raw_query": "iphon blak",
-  "normalized_query": "iphone black",
-  "tokens": ["iphon", "blak"],
-  "corrected_tokens": ["iphone", "black"],
-  "corrections": {
-    "iphon": "iphone",
-    "blak": "black"
-  }
-}
-```
-
----
-
-## Current Project Status
-
-### Completed
-
-* Professional Python project structure
-* Config-driven setup
-* Product schema validation with Pydantic
-* Sample e-commerce product catalog
-* Processed product catalog in Parquet format
-* Synthetic query generation
-* Query normalization
-* Typo correction and synonym normalization
-* Noisy query benchmark
-* Unit tests
-* Ruff quality checks
-
-### In Progress
-
-* Query understanding pipeline
-
-### Next Milestones
-
-* Entity extraction
-* Intent classification
-* Category prediction
-* Filter recommendation
-* BM25 retrieval
-* Semantic retrieval
-* Hybrid ranking
-* FastAPI deployment
-* Active learning annotation UI
-
----
-
-## Data Pipeline
-
-```text
-data/samples/sample_products.csv
-        ↓
-schema validation
-        ↓
-data/processed/products.parquet
-        ↓
-synthetic query generation
-        ↓
-data/processed/synthetic_queries.csv
-```
-
----
-
-## Query Normalization Pipeline
-
-```text
-raw query
-        ↓
-basic text normalization
-        ↓
-tokenization
-        ↓
-typo and synonym mapping
-        ↓
-normalized query + corrections
-```
-
----
-
-## Run the Project
+## Setup
 
 Create and activate a virtual environment:
 
 ```bash
-python3 -m venv .venv
+python -m venv .venv
 source .venv/bin/activate
 ```
 
@@ -128,7 +54,9 @@ pip install -r requirements.txt
 pip install -e .
 ```
 
-Prepare product data:
+## Data pipeline
+
+Prepare the product catalog:
 
 ```bash
 python scripts/prepare_data.py
@@ -140,87 +68,183 @@ Generate synthetic queries:
 python scripts/generate_queries.py
 ```
 
-Run normalization benchmark:
+Extract entities:
 
 ```bash
-python scripts/evaluate_normalization.py
+python scripts/extract_entities.py
 ```
+
+Evaluate entity extraction:
+
+```bash
+python scripts/evaluate_entities.py
+```
+
+## Intent classification
+
+Prepare the intent dataset:
+
+```bash
+python scripts/prepare_intent_dataset.py
+```
+
+Train the intent classifier:
+
+```bash
+python scripts/train_intent.py
+```
+
+Evaluate the intent classifier:
+
+```bash
+python scripts/evaluate_intent.py
+```
+
+Run example predictions:
+
+```bash
+python scripts/predict_intent.py
+```
+
+## API
+
+Start the FastAPI app:
+
+```bash
+uvicorn querysense.api.main:app --reload
+```
+
+Open the API docs:
+
+```text
+http://127.0.0.1:8000/docs
+```
+
+Health check:
+
+```http
+GET /health
+```
+
+Intent prediction:
+
+```http
+POST /predict-intent
+```
+
+Example request:
+
+```json
+{
+  "query": "sony black headphones"
+}
+```
+
+Example response:
+
+```json
+{
+  "query": "sony black headphones",
+  "normalized_query": "sony black headphones",
+  "intent": "product_search",
+  "source": "rule",
+  "model_intent": "product_search"
+}
+```
+
+## Current benchmark results
+
+### Entity extraction
+
+Current entity extraction accuracy on the synthetic benchmark:
+
+```text
+Overall entity accuracy: 99.78%
+
+brand:       100.00%
+category:    100.00%
+subcategory: 100.00%
+color:       100.00%
+size:         95.00%
+gender:      100.00%
+condition:   100.00%
+max_price:   100.00%
+```
+
+### Intent classification
+
+Initial TF-IDF + Logistic Regression baseline:
+
+```text
+Accuracy:    57.14%
+Macro F1:    38.48%
+Weighted F1: 46.53%
+```
+
+After class balancing and hybrid rule-based overrides:
+
+```text
+Accuracy:    100.00%
+Macro F1:    100.00%
+Weighted F1: 100.00%
+```
+
+Note: the 100% score is measured on the current synthetic benchmark. A larger and noisier dataset is needed for a more realistic production evaluation.
+
+## Quality checks
 
 Run tests:
 
 ```bash
 pytest
-ruff check src tests scripts
 ```
 
----
-
-## Milestone 2 Final Checks
-
-Run:
+Run linting:
 
 ```bash
-python scripts/evaluate_normalization.py
-pytest
 ruff check src tests scripts
 ```
 
-Expected result:
+Current status:
 
 ```text
-25 tests passing
+74 tests passing
 Ruff checks passing
 ```
 
----
-
-## Current Quality Checks
-
-* 25 tests passing
-* Ruff checks passing
-
----
-
-## Project Structure
+## Example queries
 
 ```text
-src/querysense/data
+sony black headphones       -> product_search
+sony                        -> brand_search
+headphones                  -> category_search
+new sony headphones         -> filtered_product_search
+sony headphones under 300   -> price_search
+iphon blak                  -> product_search
 ```
 
-Data loading, validation, and query dataset creation.
+## Tech stack
 
-```text
-src/querysense/query_understanding
-```
+- Python
+- pandas
+- scikit-learn
+- Pydantic
+- FastAPI
+- pytest
+- Ruff
+- joblib
 
-Query normalization and future NLP modules.
+## Project goal
 
-```text
-src/querysense/retrieval
-```
+The goal of QuerySense Pro is to demonstrate an end-to-end search query understanding pipeline similar to what is used in e-commerce search systems.
 
-Search, ranking, and reranking.
+It covers:
 
-```text
-src/querysense/evaluation
-```
-
-Metrics and error analysis.
-
-```text
-src/querysense/api
-```
-
-FastAPI service.
-
-```text
-src/querysense/active_learning
-```
-
-Feedback and annotation logic.
-
-```text
-src/querysense/monitoring
-```
-
-Logging and monitoring.
+- data preparation
+- normalization
+- entity extraction
+- intent classification
+- evaluation
+- API serving
+- testing
+- iterative model improvement
