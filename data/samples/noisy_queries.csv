@@ -1,0 +1,11 @@
+raw_query,expected_normalized_query,notes
+"iphon blak","iphone black","common typo recovery"
+"iphonee black","iphone black","extra character typo"
+"mens sneaker","men shoes","gender + synonym mapping"
+"womens trainers","women shoes","gender + synonym mapping"
+"wirless headfone","wireless headphones","two typo corrections"
+"labtop i7","laptop i7","laptop typo"
+"keybord qwertz","keyboard german","keyboard typo + German layout mapping"
+"camra waterproof","camera waterproof","camera typo"
+"mobile phone","phone phone","mobile synonym mapping"
+"notebook 16gb","laptop 16gb","notebook synonym mapping"

@@ -1,0 +1,18 @@
+api:
+  title: "QuerySense Pro API"
+  version: "0.1.0"
+  host: "0.0.0.0"
+  port: 8000
+  reload: true
+
+endpoints:
+  understand_query: "/understand-query"
+  search: "/search"
+  feedback: "/feedback"
+  health: "/health"
+  metrics: "/metrics"
+
+limits:
+  max_query_length: 300
+  default_top_k: 10
+  max_top_k: 50

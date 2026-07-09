@@ -1,0 +1,27 @@
+project:
+  name: "querysense-pro"
+  version: "0.1.0"
+  random_seed: 42
+
+paths:
+  data_raw_dir: "data/raw"
+  data_processed_dir: "data/processed"
+  data_samples_dir: "data/samples"
+  annotations_dir: "data/annotations"
+  models_dir: "models"
+  indexes_dir: "indexes"
+  reports_dir: "reports"
+  logs_dir: "logs"
+  experiments_dir: "experiments"
+
+files:
+  raw_products_csv: "data/raw/products.csv"
+  sample_products_csv: "data/samples/sample_products.csv"
+  processed_products_parquet: "data/processed/products.parquet"
+  synthetic_queries_csv: "data/processed/synthetic_queries.csv"
+  query_understanding_dataset_csv: "data/processed/query_understanding_dataset.csv"
+  noisy_queries_csv: "data/samples/noisy_queries.csv"
+
+logging:
+  level: "INFO"
+  log_file: "logs/querysense.log"

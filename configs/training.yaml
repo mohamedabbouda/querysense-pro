@@ -1,0 +1,26 @@
+training:
+  test_size: 0.2
+  validation_size: 0.1
+  random_seed: 42
+
+intent_classifier:
+  model_type: "logistic_regression"
+  vectorizer: "tfidf"
+  max_features: 20000
+  ngram_range: [1, 2]
+  model_output_path: "models/intent_classifier.joblib"
+  label_output_path: "models/intent_labels.json"
+
+category_classifier:
+  model_type: "logistic_regression"
+  vectorizer: "tfidf"
+  max_features: 30000
+  ngram_range: [1, 2]
+  model_output_path: "models/category_classifier.joblib"
+  label_output_path: "models/category_labels.json"
+
+reranker:
+  enabled: false
+  model_type: "cross_encoder"
+  model_name: "cross-encoder/ms-marco-MiniLM-L-6-v2"
+  model_output_path: "models/reranker"

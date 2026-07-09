@@ -1,0 +1,41 @@
+# Core data
+pandas==2.2.3
+numpy==1.26.4
+pyarrow==18.1.0
+pyyaml==6.0.2
+
+# Machine learning
+scikit-learn==1.5.2
+joblib==1.4.2
+
+# NLP and embeddings
+sentence-transformers==3.0.1
+transformers==4.41.2
+torch==2.2.2
+
+# Retrieval
+rank-bm25==0.2.2
+faiss-cpu==1.8.0
+
+# API
+fastapi==0.115.6
+uvicorn==0.34.0
+pydantic==2.10.3
+
+# Annotation UI
+streamlit==1.41.1
+
+# Evaluation and visualization
+matplotlib==3.9.3
+tqdm==4.67.1
+
+# Testing and quality
+pytest==8.3.4
+ruff==0.8.3
+mypy==1.13.0
+
+# Experiment tracking
+mlflow==2.19.0
+
+# Environment variables
+python-dotenv==1.0.1

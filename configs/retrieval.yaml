@@ -1,0 +1,27 @@
+retrieval:
+  default_top_k: 10
+  max_top_k: 50
+
+bm25:
+  enabled: true
+  index_path: "indexes/bm25_index.joblib"
+
+semantic:
+  enabled: true
+  model_name: "sentence-transformers/all-MiniLM-L6-v2"
+  embeddings_path: "indexes/product_embeddings.npy"
+  metadata_path: "indexes/product_metadata.parquet"
+  faiss_index_path: "indexes/faiss_product.index"
+  batch_size: 64
+
+hybrid_ranking:
+  bm25_weight: 0.35
+  semantic_weight: 0.35
+  entity_match_weight: 0.15
+  category_match_weight: 0.10
+  filter_match_weight: 0.05
+
+reranking:
+  enabled: false
+  top_n_before_rerank: 30
+  top_k_after_rerank: 10
