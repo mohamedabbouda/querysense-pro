@@ -70,22 +70,27 @@ class HybridIntentPredictor:
         entities: ExtractedEntities,
     ) -> str | None:
         tokens = normalized_query.split()
+
         if entities.max_price is not None or entities.min_price is not None:
             return "price_search"
+
         if (
             entities.condition is not None
             or entities.size is not None
             or entities.gender is not None
             ):
             return "filtered_product_search"
+
         if (
             entities.brand is not None
             and entities.subcategory is not None
             and entities.color is not None
             ):
             return "product_search"
+
         if entities.color is not None:
             return "filtered_product_search"
+
         if len(tokens) == 1:
             token = tokens[0]
 
