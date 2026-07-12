@@ -18,6 +18,9 @@ It normalizes noisy user queries, extracts structured entities, predicts search 
 - FastAPI endpoint for intent prediction
 - Unit and API tests
 - Ruff linting
+- Rule-based product filtering
+- Product ranking with match reasons
+- End-to-end product search API
 
 ## Project structure
 
@@ -105,6 +108,10 @@ Run example predictions:
 ```bash
 python scripts/predict_intent.py
 ```
+Run product search examples:
+
+```bash
+python scripts/search_products.py
 
 ## API
 
@@ -124,6 +131,46 @@ Health check:
 
 ```http
 GET /health
+```
+Product search:
+
+```http
+POST /search
+```
+
+Example request:
+
+```json
+{
+  "query": "sony black headphones under 300"
+}
+```
+
+Example response:
+
+```json
+{
+  "query": "sony black headphones under 300",
+  "normalized_query": "sony black headphones under 300",
+  "intent": "price_search",
+  "results": [
+    {
+      "product_id": "p005",
+      "title": "Sony WH-1000XM4 Wireless Headphones",
+      "brand": "Sony",
+      "category": "Electronics",
+      "subcategory": "Headphones",
+      "color": "Black",
+      "size": "one-size",
+      "gender": "unisex",
+      "condition": "new",
+      "price": 249.99,
+      "currency": "EUR",
+      "score": 8.0,
+      "match_reasons": ["brand", "subcategory", "color", "max_price"]
+    }
+  ]
+}
 ```
 
 Intent prediction:
@@ -208,7 +255,7 @@ ruff check src tests scripts
 Current status:
 
 ```text
-74 tests passing
+90 tests passing
 Ruff checks passing
 ```
 
