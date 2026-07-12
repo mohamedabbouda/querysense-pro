@@ -4,12 +4,19 @@ from functools import lru_cache
 
 from fastapi import FastAPI
 
-from querysense.api.schemas import IntentPredictionRequest, IntentPredictionResponse
+from querysense.api.schemas import (
+    IntentPredictionRequest,
+    IntentPredictionResponse,
+    ProductSearchRequest,
+    ProductSearchResponseModel,
+    ProductSearchResultResponse,
+)
 from querysense.config import load_project_configs
 from querysense.query_understanding.intent_service import (
     IntentPredictionService,
     IntentServiceConfig,
 )
+from querysense.retrieval.search_service import ProductSearchService, ProductSearchServiceConfig
 
 app = FastAPI(
     title="QuerySense Pro API",
@@ -52,4 +59,51 @@ def predict_intent(request: IntentPredictionRequest) -> IntentPredictionResponse
         intent=prediction.intent,
         source=prediction.source,
         model_intent=prediction.model_intent,
+    )
+
+
+@lru_cache(maxsize=1)
+def get_product_search_service() -> ProductSearchService:
+    """Load and cache the product search service."""
+    configs = load_project_configs()
+    base_config = configs["base"]
+    training_config = configs["training"]
+    intent_config = training_config["intent_classifier"]
+
+    return ProductSearchService(
+        ProductSearchServiceConfig(
+            model_path=intent_config["model_output_path"],
+            products_path=base_config["files"]["processed_products_parquet"],
+        )
+    )
+
+
+@app.post("/search", response_model=ProductSearchResponseModel)
+def search_products(request: ProductSearchRequest) -> ProductSearchResponseModel:
+    """Search products for a user query."""
+    service = get_product_search_service()
+    response = service.search(request.query)
+
+    return ProductSearchResponseModel(
+        query=response.query,
+        normalized_query=response.normalized_query,
+        intent=response.intent,
+        results=[
+            ProductSearchResultResponse(
+                product_id=result.product_id,
+                title=result.title,
+                brand=result.brand,
+                category=result.category,
+                subcategory=result.subcategory,
+                color=result.color,
+                size=result.size,
+                gender=result.gender,
+                condition=result.condition,
+                price=result.price,
+                currency=result.currency,
+                score=result.score,
+                match_reasons=result.match_reasons,
+            )
+            for result in response.results
+        ],
     )
