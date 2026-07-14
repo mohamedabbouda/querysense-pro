@@ -5,6 +5,9 @@ from functools import lru_cache
 from fastapi import FastAPI
 
 from querysense.api.schemas import (
+    FilterRecommendationRequest,
+    FilterRecommendationResponseItem,
+    FilterRecommendationResponseModel,
     IntentPredictionRequest,
     IntentPredictionResponse,
     ProductSearchRequest,
@@ -12,6 +15,10 @@ from querysense.api.schemas import (
     ProductSearchResultResponse,
 )
 from querysense.config import load_project_configs
+from querysense.query_understanding.filter_service import (
+    FilterRecommendationService,
+    FilterRecommendationServiceConfig,
+)
 from querysense.query_understanding.intent_service import (
     IntentPredictionService,
     IntentServiceConfig,
@@ -77,6 +84,18 @@ def get_product_search_service() -> ProductSearchService:
         )
     )
 
+@lru_cache(maxsize=1)
+def get_filter_recommendation_service() -> FilterRecommendationService:
+    """Load and cache the filter recommendation service."""
+    configs = load_project_configs()
+    base_config = configs["base"]
+
+    return FilterRecommendationService(
+        FilterRecommendationServiceConfig(
+            products_path=base_config["files"]["processed_products_parquet"],
+        )
+    )
+
 
 @app.post("/search", response_model=ProductSearchResponseModel)
 def search_products(request: ProductSearchRequest) -> ProductSearchResponseModel:
@@ -107,3 +126,29 @@ def search_products(request: ProductSearchRequest) -> ProductSearchResponseModel
             for result in response.results
         ],
     )
+
+
+@app.post("/recommend-filters", response_model=FilterRecommendationResponseModel)
+def recommend_filters(
+    request: FilterRecommendationRequest,
+) -> FilterRecommendationResponseModel:
+    """Recommend product filters for a user query."""
+    service = get_filter_recommendation_service()
+    response = service.recommend(request.query)
+
+    return FilterRecommendationResponseModel(
+        query=response.query,
+        normalized_query=response.normalized_query,
+        filters=[
+            FilterRecommendationResponseItem(
+                name=filter_.name,
+                value=filter_.value,
+                confidence=filter_.confidence,
+                source=filter_.source,
+            )
+            for filter_ in response.filters
+        ],
+    )
+
+
+

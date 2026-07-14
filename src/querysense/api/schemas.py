@@ -50,3 +50,26 @@ class ProductSearchResponseModel(BaseModel):
     normalized_query: str
     intent: str
     results: list[ProductSearchResultResponse]
+
+
+class FilterRecommendationRequest(BaseModel):
+    """Request body for filter recommendation."""
+
+    query: str = Field(..., min_length=1)
+
+
+class FilterRecommendationResponseItem(BaseModel):
+    """Single recommended filter response item."""
+
+    name: str
+    value: str | float
+    confidence: float
+    source: str
+
+
+class FilterRecommendationResponseModel(BaseModel):
+    """Filter recommendation API response."""
+
+    query: str
+    normalized_query: str
+    filters: list[FilterRecommendationResponseItem]

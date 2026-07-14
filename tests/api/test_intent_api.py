@@ -74,3 +74,37 @@ def test_search_products_rejects_empty_query() -> None:
     )
 
     assert response.status_code == 422
+
+
+def test_recommend_filters() -> None:
+    response = client.post(
+        "/recommend-filters",
+        json={"query": "sony black headphones under 300"},
+    )
+
+    assert response.status_code == 200
+
+    data = response.json()
+
+    assert data["query"] == "sony black headphones under 300"
+    assert data["normalized_query"] == "sony black headphones under 300"
+
+    filters = {
+        filter_["name"]: filter_["value"]
+        for filter_ in data["filters"]
+    }
+
+    assert filters["brand"] == "sony"
+    assert filters["category"] == "electronics"
+    assert filters["subcategory"] == "headphones"
+    assert filters["color"] == "black"
+    assert filters["max_price"] == 300.0
+
+
+def test_recommend_filters_rejects_empty_query() -> None:
+    response = client.post(
+        "/recommend-filters",
+        json={"query": ""},
+    )
+
+    assert response.status_code == 422
