@@ -49,7 +49,24 @@ class ProductSearchResponseModel(BaseModel):
     query: str
     normalized_query: str
     intent: str
+    entities: ExtractedEntitiesResponse
+    recommended_filters: list[FilterRecommendationResponseItem]
     results: list[ProductSearchResultResponse]
+
+class ExtractedEntitiesResponse(BaseModel):
+    """Extracted query entities in API response."""
+
+    brand: str | None = None
+    category: str | None = None
+    subcategory: str | None = None
+    product_type: str | None = None
+    color: str | None = None
+    size: str | None = None
+    gender: str | None = None
+    condition: str | None = None
+    min_price: float | None = None
+    max_price: float | None = None
+    price_intent: str | None = None
 
 
 class FilterRecommendationRequest(BaseModel):

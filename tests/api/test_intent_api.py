@@ -54,6 +54,20 @@ def test_search_products() -> None:
     assert data["query"] == "sony black headphones under 300"
     assert data["normalized_query"] == "sony black headphones under 300"
     assert data["intent"] == "price_search"
+    assert data["entities"]["brand"] == "sony"
+    assert data["entities"]["category"] == "electronics"
+    assert data["entities"]["subcategory"] == "headphones"
+    assert data["entities"]["color"] == "black"
+    assert data["entities"]["max_price"] == 300.0
+    recommended_filters = {
+    filter_["name"]: filter_["value"]
+    for filter_ in data["recommended_filters"]
+    }
+    assert recommended_filters["brand"] == "sony"
+    assert recommended_filters["subcategory"] == "headphones"
+    assert recommended_filters["color"] == "black"
+    assert recommended_filters["max_price"] == 300.0
+    
     assert len(data["results"]) >= 1
 
     first_result = data["results"][0]

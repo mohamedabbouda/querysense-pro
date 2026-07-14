@@ -5,6 +5,7 @@ from functools import lru_cache
 from fastapi import FastAPI
 
 from querysense.api.schemas import (
+    ExtractedEntitiesResponse,
     FilterRecommendationRequest,
     FilterRecommendationResponseItem,
     FilterRecommendationResponseModel,
@@ -104,27 +105,49 @@ def search_products(request: ProductSearchRequest) -> ProductSearchResponseModel
     response = service.search(request.query)
 
     return ProductSearchResponseModel(
-        query=response.query,
-        normalized_query=response.normalized_query,
-        intent=response.intent,
-        results=[
-            ProductSearchResultResponse(
-                product_id=result.product_id,
-                title=result.title,
-                brand=result.brand,
-                category=result.category,
-                subcategory=result.subcategory,
-                color=result.color,
-                size=result.size,
-                gender=result.gender,
-                condition=result.condition,
-                price=result.price,
-                currency=result.currency,
-                score=result.score,
-                match_reasons=result.match_reasons,
-            )
-            for result in response.results
-        ],
+    query=response.query,
+    normalized_query=response.normalized_query,
+    intent=response.intent,
+    entities=ExtractedEntitiesResponse(
+        brand=response.entities.brand,
+        category=response.entities.category,
+        subcategory=response.entities.subcategory,
+        product_type=response.entities.product_type,
+        color=response.entities.color,
+        size=response.entities.size,
+        gender=response.entities.gender,
+        condition=response.entities.condition,
+        min_price=response.entities.min_price,
+        max_price=response.entities.max_price,
+        price_intent=response.entities.price_intent,
+    ),
+    recommended_filters=[
+        FilterRecommendationResponseItem(
+            name=filter_.name,
+            value=filter_.value,
+            confidence=filter_.confidence,
+            source=filter_.source,
+        )
+        for filter_ in response.recommended_filters
+    ],
+    results=[
+        ProductSearchResultResponse(
+            product_id=result.product_id,
+            title=result.title,
+            brand=result.brand,
+            category=result.category,
+            subcategory=result.subcategory,
+            color=result.color,
+            size=result.size,
+            gender=result.gender,
+            condition=result.condition,
+            price=result.price,
+            currency=result.currency,
+            score=result.score,
+            match_reasons=result.match_reasons,
+        )
+        for result in response.results
+    ],
     )
 
 

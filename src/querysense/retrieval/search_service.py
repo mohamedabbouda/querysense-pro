@@ -6,6 +6,7 @@ from pathlib import Path
 import pandas as pd
 
 from querysense.query_understanding.entity_extractor import RuleBasedEntityExtractor
+from querysense.query_understanding.filter_recommendation import recommend_filters_from_entities
 from querysense.query_understanding.intent_service import (
     IntentPredictionService,
     IntentServiceConfig,
@@ -61,12 +62,17 @@ class ProductSearchService:
             _row_to_search_result(row)
             for _, row in top_products.iterrows()
         ]
+        recommended_filters = recommend_filters_from_entities(entities)
+
 
         return ProductSearchResponse(
             query=query,
             normalized_query=intent_prediction.normalized_query,
             intent=intent_prediction.intent,
+            entities=entities,
+            recommended_filters=recommended_filters,
             results=results,
+
         )
 
 

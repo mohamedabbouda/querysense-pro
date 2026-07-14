@@ -115,6 +115,19 @@ def test_product_search_service_returns_matching_result(tmp_path: Path) -> None:
 
     assert response.query == "sony black headphones under 300"
     assert response.intent == "price_search"
+    assert response.entities.brand == "sony"
+    assert response.entities.subcategory == "headphones"
+    assert response.entities.color == "black"
+    assert response.entities.max_price == 300.0
+    filters = {
+    filter_.name: filter_.value
+    for filter_ in response.recommended_filters
+    }
+    assert filters["brand"] == "sony"
+    assert filters["subcategory"] == "headphones"
+    assert filters["color"] == "black"
+    assert filters["max_price"] == 300.0
+    
     assert len(response.results) == 1
     assert response.results[0].product_id == "p002"
     assert response.results[0].score > 0

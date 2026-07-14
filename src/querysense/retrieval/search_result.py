@@ -2,6 +2,9 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
+from querysense.query_understanding.entities import ExtractedEntities
+from querysense.query_understanding.filter_recommendation import FilterRecommendation
+
 
 @dataclass(frozen=True)
 class ProductSearchResult:
@@ -24,9 +27,11 @@ class ProductSearchResult:
 
 @dataclass(frozen=True)
 class ProductSearchResponse:
-    """Search response containing ranked product results."""
+    """Search response containing query understanding and ranked product results."""
 
     query: str
     normalized_query: str
     intent: str
+    entities: ExtractedEntities
+    recommended_filters: list[FilterRecommendation]
     results: list[ProductSearchResult]
