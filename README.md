@@ -120,6 +120,11 @@ Start the FastAPI app:
 ```bash
 uvicorn querysense.api.main:app --reload
 ```
+Run filter recommendation examples:
+
+```bash
+python scripts/recommend_filters.py
+```
 
 Open the API docs:
 
@@ -199,6 +204,61 @@ Example response:
 }
 ```
 
+Filter recommendation:
+
+```http
+POST /recommend-filters
+```
+
+Example request:
+
+```json
+{
+  "query": "sony black headphones under 300"
+}
+```
+
+Example response:
+
+```json
+{
+  "query": "sony black headphones under 300",
+  "normalized_query": "sony black headphones under 300",
+  "filters": [
+    {
+      "name": "brand",
+      "value": "sony",
+      "confidence": 1.0,
+      "source": "entity"
+    },
+    {
+      "name": "category",
+      "value": "electronics",
+      "confidence": 1.0,
+      "source": "entity"
+    },
+    {
+      "name": "subcategory",
+      "value": "headphones",
+      "confidence": 1.0,
+      "source": "entity"
+    },
+    {
+      "name": "color",
+      "value": "black",
+      "confidence": 1.0,
+      "source": "entity"
+    },
+    {
+      "name": "max_price",
+      "value": 300.0,
+      "confidence": 1.0,
+      "source": "entity"
+    }
+  ]
+}
+```
+
 ## Current benchmark results
 
 ### Entity extraction
@@ -255,7 +315,7 @@ ruff check src tests scripts
 Current status:
 
 ```text
-90 tests passing
+100 tests passing
 Ruff checks passing
 ```
 
