@@ -158,6 +158,51 @@ Example response:
   "query": "sony black headphones under 300",
   "normalized_query": "sony black headphones under 300",
   "intent": "price_search",
+  "entities": {
+    "brand": "sony",
+    "category": "electronics",
+    "subcategory": "headphones",
+    "product_type": "headphones",
+    "color": "black",
+    "size": null,
+    "gender": null,
+    "condition": null,
+    "min_price": null,
+    "max_price": 300.0,
+    "price_intent": null
+  },
+  "recommended_filters": [
+    {
+      "name": "brand",
+      "value": "sony",
+      "confidence": 1.0,
+      "source": "entity"
+    },
+    {
+      "name": "category",
+      "value": "electronics",
+      "confidence": 1.0,
+      "source": "entity"
+    },
+    {
+      "name": "subcategory",
+      "value": "headphones",
+      "confidence": 1.0,
+      "source": "entity"
+    },
+    {
+      "name": "color",
+      "value": "black",
+      "confidence": 1.0,
+      "source": "entity"
+    },
+    {
+      "name": "max_price",
+      "value": 300.0,
+      "confidence": 1.0,
+      "source": "entity"
+    }
+  ],
   "results": [
     {
       "product_id": "p005",
@@ -355,3 +400,22 @@ It covers:
 - API serving
 - testing
 - iterative model improvement
+
+## End-to-end search flow
+
+```text
+User query
+   ↓
+Query normalization
+   ↓
+Intent prediction
+   ↓
+Entity extraction
+   ↓
+Filter recommendation
+   ↓
+Product filtering
+   ↓
+Product ranking
+   ↓
+Search API response
