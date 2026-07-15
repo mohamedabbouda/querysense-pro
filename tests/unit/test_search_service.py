@@ -120,15 +120,15 @@ def test_product_search_service_returns_matching_result(tmp_path: Path) -> None:
     assert response.entities.color == "black"
     assert response.entities.max_price == 300.0
     filters = {
-    filter_.name: filter_.value
-    for filter_ in response.recommended_filters
+        filter_.name: filter_.value
+        for filter_ in response.recommended_filters
     }
     assert filters["brand"] == "sony"
     assert filters["subcategory"] == "headphones"
     assert filters["color"] == "black"
     assert filters["max_price"] == 300.0
     
-    assert len(response.results) == 1
+    assert len(response.results) >= 1
     assert response.results[0].product_id == "p002"
     assert response.results[0].score > 0
     assert "brand" in response.results[0].match_reasons
@@ -136,7 +136,7 @@ def test_product_search_service_returns_matching_result(tmp_path: Path) -> None:
     assert "max_price" in response.results[0].match_reasons
 
 
-def test_product_search_service_returns_empty_when_no_match(tmp_path: Path) -> None:
+def test_product_search_service_uses_bm25_when_filters_are_too_strict(tmp_path: Path) -> None:
     model_path, products_path = _train_test_model(tmp_path)
 
     service = ProductSearchService(
@@ -149,9 +149,9 @@ def test_product_search_service_returns_empty_when_no_match(tmp_path: Path) -> N
     response = service.search("sony headphones under 100")
 
     assert response.intent == "price_search"
-    assert response.results == []
-
-
+    assert len(response.results) >= 1
+    assert response.results[0].product_id == "p002"
+    
 def test_product_search_service_respects_max_results(tmp_path: Path) -> None:
     model_path, products_path = _train_test_model(tmp_path)
 
@@ -166,3 +166,20 @@ def test_product_search_service_respects_max_results(tmp_path: Path) -> None:
     response = service.search("electronics")
 
     assert len(response.results) <= 1
+
+
+
+def test_product_search_service_uses_bm25_for_keyword_query(tmp_path: Path) -> None:
+    model_path, products_path = _train_test_model(tmp_path)
+
+    service = ProductSearchService(
+        ProductSearchServiceConfig(
+            model_path=model_path,
+            products_path=products_path,
+        )
+    )
+
+    response = service.search("wireless headphones")
+
+    assert len(response.results) >= 1
+    assert response.results[0].product_id == "p002"
