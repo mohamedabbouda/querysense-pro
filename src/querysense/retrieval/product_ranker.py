@@ -16,6 +16,7 @@ MATCH_WEIGHTS = {
     "min_price": 0.5,
     "max_price": 0.5,
     "title_token": 0.25,
+    "BM25_SCORE_WEIGHT" : 1.0,
 }
 
 
@@ -50,6 +51,10 @@ def rank_products(
 
     ranked_df["score"] = scores
     ranked_df["match_reasons"] = match_reasons
+    if "bm25_score" in ranked_df.columns:
+        ranked_df["score"] = ranked_df["score"] + (
+        _normalize_bm25_scores(ranked_df["bm25_score"]) * MATCH_WEIGHTS["BM25_SCORE_WEIGHT"] 
+        )
 
     return ranked_df.sort_values(
         by=["score", "price"],
@@ -159,3 +164,15 @@ def _score_text_match(
         reasons.append(column_name)
 
     return score, reasons
+
+
+def _normalize_bm25_scores(scores: pd.Series) -> pd.Series:
+    """Normalize BM25 scores to a 0-1 range."""
+    safe_scores = scores.fillna(0.0).astype(float)
+
+    max_score = safe_scores.max()
+
+    if max_score <= 0:
+        return safe_scores * 0.0
+
+    return safe_scores / max_score

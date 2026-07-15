@@ -117,3 +117,50 @@ def test_rank_products_handles_empty_dataframe() -> None:
     assert result.empty
     assert "score" in result.columns
     assert "match_reasons" in result.columns
+
+
+
+def test_rank_products_adds_normalized_bm25_score() -> None:
+    products_df = pd.DataFrame(
+        [
+            {
+                "product_id": "p001",
+                "title": "Generic Wireless Headphones",
+                "brand": "Generic",
+                "category": "Electronics",
+                "subcategory": "Headphones",
+                "color": "Black",
+                "size": "one-size",
+                "gender": "unisex",
+                "condition": "new",
+                "price": 99.99,
+                "currency": "EUR",
+                "bm25_score": 2.0,
+            },
+            {
+                "product_id": "p002",
+                "title": "Another Wireless Headphones",
+                "brand": "Generic",
+                "category": "Electronics",
+                "subcategory": "Headphones",
+                "color": "Black",
+                "size": "one-size",
+                "gender": "unisex",
+                "condition": "new",
+                "price": 89.99,
+                "currency": "EUR",
+                "bm25_score": 1.0,
+            },
+        ]
+    )
+
+    entities = ExtractedEntities(subcategory="headphones")
+
+    ranked = rank_products(
+        products_df=products_df,
+        entities=entities,
+        normalized_query="wireless headphones",
+    )
+
+    assert ranked.iloc[0]["product_id"] == "p001"
+    assert ranked.iloc[0]["score"] > ranked.iloc[1]["score"]
