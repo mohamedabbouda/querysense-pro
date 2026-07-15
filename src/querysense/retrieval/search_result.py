@@ -22,6 +22,7 @@ class ProductSearchResult:
     price: float
     currency: str
     score: float
+    bm25_score: float
     match_reasons: list[str]
 
 

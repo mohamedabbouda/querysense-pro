@@ -88,6 +88,9 @@ class ProductSearchService:
 
 
 def _row_to_search_result(row: pd.Series) -> ProductSearchResult:
+    bm25_score = row.get("bm25_score", 0.0)
+    safe_bm25_score = 0.0 if pd.isna(bm25_score) else float(bm25_score)
+
     return ProductSearchResult(
         product_id=str(row["product_id"]),
         title=str(row["title"]),
@@ -101,6 +104,7 @@ def _row_to_search_result(row: pd.Series) -> ProductSearchResult:
         price=float(row["price"]),
         currency=str(row["currency"]),
         score=float(row["score"]),
+        bm25_score=safe_bm25_score,
         match_reasons=list(row["match_reasons"]),
     )
 
@@ -109,13 +113,35 @@ def _merge_candidate_products(
     filtered_products: pd.DataFrame,
     bm25_products: pd.DataFrame,
     ) -> pd.DataFrame:
-    """Merge structured-filter candidates and BM25 candidates."""
+    """Merge structured-filter candidates and BM25 candidates.
+
+    If a product appears in both sources, preserve the BM25 score.
+    """
     if filtered_products.empty and bm25_products.empty:
         return filtered_products.copy()
 
+    filtered_candidates = filtered_products.copy()
+    bm25_candidates = bm25_products.copy()
+
+    if "bm25_score" not in filtered_candidates.columns:
+        filtered_candidates["bm25_score"] = 0.0
+
+    if "bm25_score" not in bm25_candidates.columns:
+        bm25_candidates["bm25_score"] = 0.0
+
+    filtered_candidates["bm25_score"] = filtered_candidates["bm25_score"].fillna(0.0)
+    bm25_candidates["bm25_score"] = bm25_candidates["bm25_score"].fillna(0.0)
+
     candidate_products = pd.concat(
-        [filtered_products, bm25_products],
+        [filtered_candidates, bm25_candidates],
         ignore_index=True,
+    )
+
+    candidate_products["bm25_score"] = candidate_products["bm25_score"].fillna(0.0)
+
+    candidate_products = candidate_products.sort_values(
+        by="bm25_score",
+        ascending=False,
     )
 
     candidate_products = candidate_products.drop_duplicates(

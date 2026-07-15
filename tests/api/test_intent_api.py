@@ -76,6 +76,7 @@ def test_search_products() -> None:
     assert first_result["subcategory"].lower() == "headphones"
     assert first_result["price"] <= 300
     assert first_result["score"] > 0
+    assert "bm25_score" in first_result
     assert "brand" in first_result["match_reasons"]
     assert "subcategory" in first_result["match_reasons"]
     assert "max_price" in first_result["match_reasons"]

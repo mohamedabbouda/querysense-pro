@@ -151,7 +151,7 @@ def test_product_search_service_uses_bm25_when_filters_are_too_strict(tmp_path: 
     assert response.intent == "price_search"
     assert len(response.results) >= 1
     assert response.results[0].product_id == "p002"
-    
+
 def test_product_search_service_respects_max_results(tmp_path: Path) -> None:
     model_path, products_path = _train_test_model(tmp_path)
 
@@ -183,3 +183,5 @@ def test_product_search_service_uses_bm25_for_keyword_query(tmp_path: Path) -> N
 
     assert len(response.results) >= 1
     assert response.results[0].product_id == "p002"
+    assert response.results[0].bm25_score > 0
+    assert "bm25" in response.results[0].match_reasons

@@ -33,6 +33,7 @@ def rank_products(
 
     ranked_df = products_df.copy()
 
+
     scores: list[float] = []
     match_reasons: list[list[str]] = []
 
@@ -63,6 +64,7 @@ def _score_product(
 ) -> tuple[float, list[str]]:
     score = 0.0
     reasons: list[str] = []
+    
 
     score, reasons = _score_text_match(
         product=product,
@@ -130,6 +132,11 @@ def _score_product(
     if matching_title_tokens:
         score += len(matching_title_tokens) * MATCH_WEIGHTS["title_token"]
         reasons.extend([f"title:{token}" for token in matching_title_tokens])
+    
+    bm25_score = product.get("bm25_score", 0.0)
+    if pd.notna(bm25_score) and float(bm25_score) > 0:
+        reasons.append("bm25")
+        
 
     return score, reasons
 

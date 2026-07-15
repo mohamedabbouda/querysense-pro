@@ -144,6 +144,7 @@ def search_products(request: ProductSearchRequest) -> ProductSearchResponseModel
             price=result.price,
             currency=result.currency,
             score=result.score,
+            bm25_score=result.bm25_score,
             match_reasons=result.match_reasons,
         )
         for result in response.results
