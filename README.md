@@ -343,6 +343,28 @@ Weighted F1: 100.00%
 
 Note: the 100% score is measured on the current synthetic benchmark. A larger and noisier dataset is needed for a more realistic production evaluation.
 
+### Hybrid BM25 product retrieval
+
+QuerySense Pro combines structured entity-based retrieval with BM25 keyword retrieval.
+
+The search flow now uses:
+
+1. query normalization
+2. intent prediction
+3. entity extraction
+4. structured filtering
+5. BM25 keyword candidate retrieval
+6. candidate merging
+7. hybrid ranking using structured match score + normalized BM25 score
+
+This improves natural keyword queries such as:
+
+- `wireless noise cancelling`
+- `comfortable running shoes`
+- `home office desk`
+
+The API search response also exposes `bm25_score` and `match_reasons` for ranking transparency.
+
 ## Quality checks
 
 Run tests:
