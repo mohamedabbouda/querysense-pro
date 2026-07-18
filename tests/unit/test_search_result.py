@@ -20,6 +20,7 @@ def test_product_search_result_schema() -> None:
         currency="EUR",
         score=5.0,
         bm25_score=0.0,
+        semantic_score=0.0,
         match_reasons=["brand", "subcategory"],
     )
 
@@ -43,6 +44,7 @@ def test_product_search_response_schema() -> None:
         currency="EUR",
         score=5.0,
         bm25_score=0.0,
+        semantic_score=0.0,
         match_reasons=["brand", "subcategory"],
     )
 

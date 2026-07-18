@@ -141,6 +141,10 @@ def _score_product(
     bm25_score = product.get("bm25_score", 0.0)
     if pd.notna(bm25_score) and float(bm25_score) > 0:
         reasons.append("bm25")
+    
+    semantic_score = product.get("semantic_score", 0.0)
+    if pd.notna(semantic_score) and float(semantic_score) > 0:
+        reasons.append("semantic")
         
 
     return score, reasons

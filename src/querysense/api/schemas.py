@@ -41,6 +41,7 @@ class ProductSearchResultResponse(BaseModel):
     currency: str
     score: float
     bm25_score: float
+    semantic_score: float
     match_reasons: list[str]
 
 

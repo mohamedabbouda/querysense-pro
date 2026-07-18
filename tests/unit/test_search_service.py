@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
 
 from querysense.data.intent_dataset import prepare_intent_dataset, split_intent_dataset
@@ -9,6 +10,48 @@ from querysense.retrieval.search_service import ProductSearchService, ProductSea
 from querysense.training.train_intent import save_intent_classifier, train_intent_classifier
 
 
+class FakeEmbeddingModel:
+    """Small deterministic embedding model for search service tests."""
+
+    def encode(
+        self,
+        sentences: list[str] | str,
+        normalize_embeddings: bool = False,
+    ) -> np.ndarray:
+        if isinstance(sentences, str):
+            return self._encode_one(sentences, normalize_embeddings)
+
+        return np.asarray(
+            [
+                self._encode_one(sentence, normalize_embeddings)
+                for sentence in sentences
+            ],
+            dtype=np.float32,
+        )
+
+    def _encode_one(
+        self,
+        sentence: str,
+        normalize_embeddings: bool,
+    ) -> np.ndarray:
+        sentence = sentence.lower()
+
+        vector = np.asarray(
+            [
+                1.0 if "headphone" in sentence or "noise" in sentence else 0.0,
+                1.0 if "shoe" in sentence or "running" in sentence else 0.0,
+                1.0 if "desk" in sentence or "office" in sentence else 0.0,
+            ],
+            dtype=np.float32,
+        )
+
+        if normalize_embeddings:
+            norm = np.linalg.norm(vector)
+
+            if norm > 0:
+                vector = vector / norm
+
+        return vector
 def _build_products_df() -> pd.DataFrame:
     return pd.DataFrame(
         [
@@ -185,3 +228,28 @@ def test_product_search_service_uses_bm25_for_keyword_query(tmp_path: Path) -> N
     assert response.results[0].product_id == "p002"
     assert response.results[0].bm25_score > 0
     assert "bm25" in response.results[0].match_reasons
+
+
+def test_product_search_service_can_use_semantic_candidates(tmp_path: Path) -> None:
+    model_path, products_path = _train_test_model(tmp_path)
+
+    service = ProductSearchService(
+        ProductSearchServiceConfig(
+            model_path=model_path,
+            products_path=products_path,
+            use_semantic_search=True,
+        ),
+        embedding_model=FakeEmbeddingModel(),
+    )
+
+    response = service.search("noise blocking headset")
+
+    semantic_matches = [
+        result
+        for result in response.results
+        if result.semantic_score > 0
+    ]
+
+    assert semantic_matches
+    assert semantic_matches[0].product_id == "p002"
+    assert "semantic" in semantic_matches[0].match_reasons
