@@ -365,6 +365,35 @@ This improves natural keyword queries such as:
 
 The API search response also exposes `bm25_score` and `match_reasons` for ranking transparency.
 
+### Semantic retrieval
+
+QuerySense Pro supports semantic product retrieval using Sentence Transformers.
+
+The semantic retrieval flow is:
+
+1. build natural product text from catalog fields
+2. encode product text into dense embeddings
+3. encode the user query into an embedding
+4. compute cosine similarity between query and product embeddings
+5. return semantically similar products
+
+This allows the system to handle meaning-based queries such as:
+
+- `noise blocking headset`
+- `something for jogging`
+- `office work laptop`
+- `phone for daily use`
+
+Semantic retrieval is integrated into the main product search pipeline as an optional retrieval source.
+
+The final search ranking combines:
+
+1. structured entity match score
+2. normalized BM25 keyword score
+3. normalized semantic similarity score
+
+The `/search` API response exposes both `bm25_score` and `semantic_score` for ranking transparency.
+
 ## Quality checks
 
 Run tests:
