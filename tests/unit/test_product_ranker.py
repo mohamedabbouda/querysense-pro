@@ -164,3 +164,49 @@ def test_rank_products_adds_normalized_bm25_score() -> None:
 
     assert ranked.iloc[0]["product_id"] == "p001"
     assert ranked.iloc[0]["score"] > ranked.iloc[1]["score"]
+
+
+def test_rank_products_adds_normalized_semantic_score() -> None:
+    products_df = pd.DataFrame(
+        [
+            {
+                "product_id": "p001",
+                "title": "Generic Product",
+                "brand": "Generic",
+                "category": "Electronics",
+                "subcategory": "Accessories",
+                "color": "Black",
+                "size": "one-size",
+                "gender": "unisex",
+                "condition": "new",
+                "price": 99.99,
+                "currency": "EUR",
+                "semantic_score": 0.9,
+            },
+            {
+                "product_id": "p002",
+                "title": "Another Product",
+                "brand": "Generic",
+                "category": "Electronics",
+                "subcategory": "Accessories",
+                "color": "Black",
+                "size": "one-size",
+                "gender": "unisex",
+                "condition": "new",
+                "price": 89.99,
+                "currency": "EUR",
+                "semantic_score": 0.1,
+            },
+        ]
+    )
+
+    entities = ExtractedEntities(subcategory="accessories")
+
+    ranked = rank_products(
+        products_df=products_df,
+        entities=entities,
+        normalized_query="noise blocking headset",
+    )
+
+    assert ranked.iloc[0]["product_id"] == "p001"
+    assert ranked.iloc[0]["score"] > ranked.iloc[1]["score"]
