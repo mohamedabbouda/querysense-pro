@@ -394,6 +394,38 @@ The final search ranking combines:
 
 The `/search` API response exposes both `bm25_score` and `semantic_score` for ranking transparency.
 
+### Search evaluation
+
+QuerySense Pro includes a small relevance benchmark for evaluating product search quality.
+
+The benchmark contains 20 labeled search queries with known relevant product IDs.
+
+Latest evaluation results:
+
+| Metric | Score |
+|---|---:|
+| Precision@10 | 0.1100 |
+| Recall@10 | 1.0000 |
+| MRR | 0.9050 |
+| NDCG@10 | 0.9275 |
+
+Interpretation:
+
+- **Recall@10 = 1.0000** means every relevant product appears somewhere in the top 10 results.
+- **MRR = 0.9050** means the first relevant product is usually ranked very high.
+- **NDCG@10 = 0.9275** means relevant products are generally near the top of the ranking.
+- **Precision@10 = 0.1100** is expected to be low because most benchmark queries have only one relevant product while the system can return up to 10 results.
+
+Evaluation outputs are saved to:
+
+- `reports/search_metrics.json`
+- `reports/search_per_query_metrics.csv`
+
+Run the evaluation with:
+
+```bash
+python scripts/evaluate_search.py
+
 ## Quality checks
 
 Run tests:
