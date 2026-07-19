@@ -1,0 +1,21 @@
+query,relevant_product_ids,retrieved_product_ids,precision_at_k,recall_at_k,reciprocal_rank,ndcg_at_k
+sony black headphones,['P005'],['P005'],0.1,1.0,1.0,1.0
+wireless noise cancelling,['P005'],"['P005', 'P019', 'P020', 'P008', 'P007', 'P002', 'P001', 'P016', 'P011', 'P017']",0.1,1.0,1.0,1.0
+noise blocking headset,['P005'],"['P005', 'P008', 'P007', 'P002', 'P001', 'P019', 'P016', 'P020', 'P011', 'P017']",0.1,1.0,1.0,1.0
+nike black running shoes,['P001'],"['P001', 'P002']",0.1,1.0,1.0,1.0
+comfortable running shoes,['P001'],"['P001', 'P002']",0.1,1.0,1.0,1.0
+something for jogging,['P001'],"['P008', 'P016', 'P018', 'P014', 'P013', 'P019', 'P011', 'P002', 'P017', 'P001']",0.1,1.0,0.1,0.2890648263178879
+iphone black,['P003'],['P003'],0.1,1.0,1.0,1.0
+phone for daily use,['P003'],"['P004', 'P003', 'P014', 'P013', 'P019', 'P008', 'P016', 'P018', 'P011', 'P002']",0.1,1.0,0.5,0.6309297535714575
+apple smartphone,['P003'],"['P003', 'P020', 'P006']",0.1,1.0,1.0,1.0
+office work laptop,"['P009', 'P010']","['P010', 'P009', 'P019', 'P012', 'P011']",0.2,1.0,1.0,1.0
+business laptop,['P010'],"['P010', 'P009']",0.1,1.0,1.0,1.0
+premium laptop,['P009'],"['P010', 'P009']",0.1,1.0,0.5,0.6309297535714575
+white shoes for women,['P002'],"['P002', 'P001', 'P008', 'P016', 'P011', 'P015', 'P007', 'P020', 'P018', 'P014']",0.1,1.0,1.0,1.0
+women white sneakers,['P002'],"['P002', 'P001', 'P008', 'P016', 'P011', 'P020']",0.1,1.0,1.0,1.0
+red summer dress,['P008'],['P008'],0.1,1.0,1.0,1.0
+home office desk,['P011'],"['P011', 'P012', 'P018', 'P017', 'P019']",0.1,1.0,1.0,1.0
+office furniture,"['P011', 'P012']","['P012', 'P011', 'P019']",0.2,1.0,1.0,1.0
+comfortable office chair,['P012'],"['P012', 'P011', 'P019']",0.1,1.0,1.0,1.0
+action camera,['P014'],"['P014', 'P013']",0.1,1.0,1.0,1.0
+waterproof action camera,['P014'],"['P014', 'P013', 'P015']",0.1,1.0,1.0,1.0

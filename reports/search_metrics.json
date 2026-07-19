@@ -1,0 +1,8 @@
+{
+  "precision_at_k": 0.11000000000000001,
+  "recall_at_k": 1.0,
+  "mean_reciprocal_rank": 0.905,
+  "ndcg_at_k": 0.9275462166730402,
+  "num_queries": 20,
+  "k": 10
+}
