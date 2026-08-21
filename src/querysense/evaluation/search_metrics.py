@@ -144,3 +144,4 @@ def _count_relevant_retrieved(
         for product_id in retrieved_product_ids
         if product_id in relevant_product_ids
     )
+

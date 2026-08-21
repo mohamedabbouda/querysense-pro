@@ -253,3 +253,18 @@ def test_product_search_service_can_use_semantic_candidates(tmp_path: Path) -> N
     assert semantic_matches
     assert semantic_matches[0].product_id == "p002"
     assert "semantic" in semantic_matches[0].match_reasons
+
+def test_product_search_service_can_disable_bm25_candidates(tmp_path: Path) -> None:
+    model_path, products_path = _train_test_model(tmp_path)
+
+    service = ProductSearchService(
+        ProductSearchServiceConfig(
+            model_path=model_path,
+            products_path=products_path,
+            use_bm25_search=False,
+        )
+    )
+
+    response = service.search("wireless headphones")
+
+    assert all(result.bm25_score == 0.0 for result in response.results)

@@ -20,11 +20,10 @@ from querysense.retrieval.semantic_index import SemanticProductIndex, TextEmbedd
 
 @dataclass(frozen=True)
 class ProductSearchServiceConfig:
-    """Configuration for product search service."""
-
-    model_path: str | Path
-    products_path: str | Path
+    model_path: Path
+    products_path: Path
     max_results: int = 10
+    use_bm25_search: bool = True
     use_semantic_search: bool = False
 
 
@@ -38,7 +37,10 @@ class ProductSearchService:
     ) -> None:
         self.config = config
         self.products_df = pd.read_parquet(config.products_path)
-        self.bm25_index = BM25ProductIndex(self.products_df)
+        self.bm25_index: BM25ProductIndex | None = None
+        if config.use_bm25_search:
+            self.bm25_index = BM25ProductIndex(self.products_df)
+
         self.semantic_index: SemanticProductIndex | None = None
         if config.use_semantic_search:
             if embedding_model is None:
@@ -68,10 +70,12 @@ class ProductSearchService:
             products_df=self.products_df,
             entities=entities,
         )
-        bm25_products = self.bm25_index.search(
-            query=intent_prediction.normalized_query,
-            top_k=self.config.max_results * 3,
-            )
+        bm25_products = pd.DataFrame()
+        if self.bm25_index is not None:
+            bm25_products = self.bm25_index.search(
+                query=intent_prediction.normalized_query,
+                top_k=self.config.max_results * 3,
+                )
         semantic_products = pd.DataFrame()
         if self.semantic_index is not None:
             semantic_products = self.semantic_index.search(
