@@ -51,6 +51,8 @@ def test_product_search_response_schema() -> None:
     response = ProductSearchResponse(
         query="nike shoes",
         normalized_query="nike shoes",
+        expanded_query="nike shoes",
+        expanded_terms=[],
         intent="product_search",
         entities=ExtractedEntities(brand="nike", subcategory="shoes"),
         recommended_filters=[

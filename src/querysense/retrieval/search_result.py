@@ -35,6 +35,9 @@ class ProductSearchResponse:
     query: str
     normalized_query: str
     intent: str
+    expanded_query: str
+    expanded_terms: list[str]
     entities: ExtractedEntities
     recommended_filters: list[FilterRecommendation]
     results: list[ProductSearchResult]
+    

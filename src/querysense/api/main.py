@@ -107,6 +107,8 @@ def search_products(request: ProductSearchRequest) -> ProductSearchResponseModel
     return ProductSearchResponseModel(
     query=response.query,
     normalized_query=response.normalized_query,
+    expanded_query=response.expanded_query,
+    expanded_terms=response.expanded_terms,
     intent=response.intent,
     entities=ExtractedEntitiesResponse(
         brand=response.entities.brand,

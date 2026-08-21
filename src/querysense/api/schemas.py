@@ -50,6 +50,8 @@ class ProductSearchResponseModel(BaseModel):
 
     query: str
     normalized_query: str
+    expanded_query: str
+    expanded_terms: list[str]
     intent: str
     entities: ExtractedEntitiesResponse
     recommended_filters: list[FilterRecommendationResponseItem]

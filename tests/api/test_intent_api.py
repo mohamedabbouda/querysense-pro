@@ -81,6 +81,8 @@ def test_search_products() -> None:
     assert "brand" in first_result["match_reasons"]
     assert "subcategory" in first_result["match_reasons"]
     assert "max_price" in first_result["match_reasons"]
+    assert data["expanded_query"]
+    assert "expanded_terms" in data
 
 
 def test_search_products_rejects_empty_query() -> None:

@@ -27,6 +27,8 @@ class FakeSearchService:
         return ProductSearchResponse(
             query=query,
             normalized_query=query,
+            expanded_query=query,
+            expanded_terms=[],
             intent="product_search",
             entities=ExtractedEntities(),
             recommended_filters=[],

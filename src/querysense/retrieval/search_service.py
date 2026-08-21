@@ -11,6 +11,7 @@ from querysense.query_understanding.intent_service import (
     IntentPredictionService,
     IntentServiceConfig,
 )
+from querysense.query_understanding.query_expansion import QueryExpander
 from querysense.retrieval.bm25_index import BM25ProductIndex
 from querysense.retrieval.product_filter import filter_products_by_entities
 from querysense.retrieval.product_ranker import rank_products
@@ -52,6 +53,7 @@ class ProductSearchService:
                     products_df=self.products_df,
                     embedding_model=embedding_model,
                     )
+        
 
         self.entity_extractor = RuleBasedEntityExtractor.from_products(self.products_df)
         self.intent_service = IntentPredictionService(
@@ -60,11 +62,13 @@ class ProductSearchService:
                 products_path=config.products_path,
             )
         )
+        self.query_expander = QueryExpander()
 
     def search(self, query: str) -> ProductSearchResponse:
         """Search products for a user query."""
         intent_prediction = self.intent_service.predict(query)
         entities = self.entity_extractor.extract(query)
+        expanded_query = self.query_expander.expand(intent_prediction.normalized_query)
 
         filtered_products = filter_products_by_entities(
             products_df=self.products_df,
@@ -73,13 +77,13 @@ class ProductSearchService:
         bm25_products = pd.DataFrame()
         if self.bm25_index is not None:
             bm25_products = self.bm25_index.search(
-                query=intent_prediction.normalized_query,
+                query=expanded_query.expanded_query,
                 top_k=self.config.max_results * 3,
                 )
         semantic_products = pd.DataFrame()
         if self.semantic_index is not None:
             semantic_products = self.semantic_index.search(
-                query=intent_prediction.normalized_query,
+                query=expanded_query.expanded_query,
                 top_k=self.config.max_results * 3,
                 )
         candidate_products = _merge_candidate_products(
@@ -111,7 +115,8 @@ class ProductSearchService:
             entities=entities,
             recommended_filters=recommended_filters,
             results=results,
-
+            expanded_query=expanded_query.expanded_query,
+            expanded_terms=expanded_query.expanded_terms,
         )
 
 

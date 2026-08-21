@@ -268,3 +268,20 @@ def test_product_search_service_can_disable_bm25_candidates(tmp_path: Path) -> N
     response = service.search("wireless headphones")
 
     assert all(result.bm25_score == 0.0 for result in response.results)
+
+def test_product_search_service_returns_expanded_query_for_vague_query(tmp_path: Path) -> None:
+    model_path, products_path = _train_test_model(tmp_path)
+
+    service = ProductSearchService(
+        ProductSearchServiceConfig(
+            model_path=model_path,
+            products_path=products_path,
+        )
+    )
+
+    response = service.search("noise blocking headset")
+
+    assert response.normalized_query == "noise blocking headset"
+    assert "noise cancelling headphones" in response.expanded_terms
+    assert "wireless headphones" in response.expanded_terms
+    assert response.expanded_query.startswith("noise blocking headset")
