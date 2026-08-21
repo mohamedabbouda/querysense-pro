@@ -426,6 +426,27 @@ Run the evaluation with:
 ```bash
 python scripts/evaluate_search.py
 
+### Search experiment comparison
+
+QuerySense Pro compares retrieval configurations on the same 20-query relevance benchmark.
+
+| Experiment | Precision@10 | Recall@10 | MRR | NDCG@10 |
+|---|---:|---:|---:|---:|
+| Structured only | 0.1050 | 0.9500 | 0.8375 | 0.8662 |
+| Structured + BM25 | 0.1100 | 1.0000 | 0.9050 | 0.9275 |
+
+Adding BM25 improved Recall@10 from 0.95 to 1.00 and increased NDCG@10 from 0.8662 to 0.9275.
+
+Run experiments with:
+
+```bash
+python scripts/run_search_experiments.py
+```
+
+Experiment output is saved to:
+
+- `reports/search_experiments.csv`
+
 ## Quality checks
 
 Run tests:
