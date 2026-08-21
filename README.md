@@ -21,6 +21,10 @@ It normalizes noisy user queries, extracts structured entities, predicts search 
 - Rule-based product filtering
 - Product ranking with match reasons
 - End-to-end product search API
+- BM25 keyword retrieval
+- Semantic retrieval with Sentence Transformers
+- Hybrid search ranking
+- Search evaluation and experiment comparison
 
 ## Project structure
 
@@ -29,14 +33,17 @@ querysense-pro/
 ├── configs/
 ├── data/
 │   ├── samples/
-│   └── processed/
+│   ├── processed/
+│   └── annotations/
 ├── models/
+├── reports/
 ├── scripts/
 ├── src/querysense/
 │   ├── api/
 │   ├── data/
 │   ├── evaluation/
 │   ├── query_understanding/
+│   ├── retrieval/
 │   └── training/
 └── tests/
 ```
@@ -108,10 +115,18 @@ Run example predictions:
 ```bash
 python scripts/predict_intent.py
 ```
+
 Run product search examples:
 
 ```bash
 python scripts/search_products.py
+```
+
+Run filter recommendation examples:
+
+```bash
+python scripts/recommend_filters.py
+```
 
 ## API
 
@@ -119,11 +134,6 @@ Start the FastAPI app:
 
 ```bash
 uvicorn querysense.api.main:app --reload
-```
-Run filter recommendation examples:
-
-```bash
-python scripts/recommend_filters.py
 ```
 
 Open the API docs:
@@ -137,6 +147,7 @@ Health check:
 ```http
 GET /health
 ```
+
 Product search:
 
 ```http
@@ -349,13 +360,13 @@ QuerySense Pro combines structured entity-based retrieval with BM25 keyword retr
 
 The search flow now uses:
 
-1. query normalization
-2. intent prediction
-3. entity extraction
-4. structured filtering
+1. Query normalization
+2. Intent prediction
+3. Entity extraction
+4. Structured filtering
 5. BM25 keyword candidate retrieval
-6. candidate merging
-7. hybrid ranking using structured match score + normalized BM25 score
+6. Candidate merging
+7. Hybrid ranking using structured match score + normalized BM25 score
 
 This improves natural keyword queries such as:
 
@@ -371,11 +382,11 @@ QuerySense Pro supports semantic product retrieval using Sentence Transformers.
 
 The semantic retrieval flow is:
 
-1. build natural product text from catalog fields
-2. encode product text into dense embeddings
-3. encode the user query into an embedding
-4. compute cosine similarity between query and product embeddings
-5. return semantically similar products
+1. Build natural product text from catalog fields
+2. Encode product text into dense embeddings
+3. Encode the user query into an embedding
+4. Compute cosine similarity between query and product embeddings
+5. Return semantically similar products
 
 This allows the system to handle meaning-based queries such as:
 
@@ -388,9 +399,9 @@ Semantic retrieval is integrated into the main product search pipeline as an opt
 
 The final search ranking combines:
 
-1. structured entity match score
-2. normalized BM25 keyword score
-3. normalized semantic similarity score
+1. Structured entity match score
+2. Normalized BM25 keyword score
+3. Normalized semantic similarity score
 
 The `/search` API response exposes both `bm25_score` and `semantic_score` for ranking transparency.
 
@@ -425,6 +436,7 @@ Run the evaluation with:
 
 ```bash
 python scripts/evaluate_search.py
+```
 
 ### Search experiment comparison
 
@@ -489,6 +501,8 @@ iphon blak                  -> product_search
 - pytest
 - Ruff
 - joblib
+- Sentence Transformers
+- BM25
 
 ## Project goal
 
@@ -496,14 +510,17 @@ The goal of QuerySense Pro is to demonstrate an end-to-end search query understa
 
 It covers:
 
-- data preparation
-- normalization
-- entity extraction
-- intent classification
-- evaluation
+- Data preparation
+- Normalization
+- Entity extraction
+- Intent classification
+- Filter recommendation
+- Product retrieval
+- Hybrid ranking
+- Evaluation
 - API serving
-- testing
-- iterative model improvement
+- Testing
+- Iterative model improvement
 
 ## End-to-end search flow
 
@@ -518,8 +535,13 @@ Entity extraction
    ↓
 Filter recommendation
    ↓
-Product filtering
+Structured retrieval
    ↓
-Product ranking
+BM25 retrieval
+   ↓
+Semantic retrieval
+   ↓
+Hybrid ranking
    ↓
 Search API response
+```
