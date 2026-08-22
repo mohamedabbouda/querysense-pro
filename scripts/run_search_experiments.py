@@ -24,26 +24,36 @@ def main() -> None:
     relevance_examples = load_search_relevance_csv(relevance_path)
 
     experiment_configs = [
-        SearchExperimentConfig(
-            name="structured_only",
-            search_service_config=ProductSearchServiceConfig(
-                model_path=model_path,
-                products_path=products_path,
-                max_results=10,
-                use_bm25_search=False,
-                use_semantic_search=False,
-            ),
+    SearchExperimentConfig(
+        name="structured_only",
+        search_service_config=ProductSearchServiceConfig(
+            model_path=model_path,
+            products_path=products_path,
+            use_bm25_search=False,
+            use_semantic_search=False,
+            use_query_expansion=False,
         ),
-        SearchExperimentConfig(
-            name="structured_bm25",
-            search_service_config=ProductSearchServiceConfig(
-                model_path=model_path,
-                products_path=products_path,
-                max_results=10,
-                use_bm25_search=True,
-                use_semantic_search=False,
-            ),
+    ),
+    SearchExperimentConfig(
+        name="structured_bm25_no_expansion",
+        search_service_config=ProductSearchServiceConfig(
+            model_path=model_path,
+            products_path=products_path,
+            use_bm25_search=True,
+            use_semantic_search=False,
+            use_query_expansion=False,
         ),
+    ),
+    SearchExperimentConfig(
+        name="structured_bm25_with_expansion",
+        search_service_config=ProductSearchServiceConfig(
+            model_path=model_path,
+            products_path=products_path,
+            use_bm25_search=True,
+            use_semantic_search=False,
+            use_query_expansion=True,
+        ),
+    ),
     ]
 
     results = run_search_experiments(
