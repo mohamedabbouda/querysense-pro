@@ -11,7 +11,7 @@ from querysense.query_understanding.intent_service import (
     IntentPredictionService,
     IntentServiceConfig,
 )
-from querysense.query_understanding.query_expansion import QueryExpander
+from querysense.query_understanding.query_expansion import ExpandedQuery, QueryExpander
 from querysense.retrieval.bm25_index import BM25ProductIndex
 from querysense.retrieval.product_filter import filter_products_by_entities
 from querysense.retrieval.product_ranker import rank_products
@@ -26,6 +26,7 @@ class ProductSearchServiceConfig:
     max_results: int = 10
     use_bm25_search: bool = True
     use_semantic_search: bool = False
+    use_query_expansion: bool = True
 
 
 class ProductSearchService:
@@ -68,7 +69,15 @@ class ProductSearchService:
         """Search products for a user query."""
         intent_prediction = self.intent_service.predict(query)
         entities = self.entity_extractor.extract(query)
-        expanded_query = self.query_expander.expand(intent_prediction.normalized_query)
+        if self.config.use_query_expansion:
+            expanded_query = self.query_expander.expand(intent_prediction.normalized_query)
+        else:
+            expanded_query = ExpandedQuery(
+                original_query=intent_prediction.normalized_query,
+                normalized_query=intent_prediction.normalized_query,
+                expanded_terms=[],
+                expanded_query=intent_prediction.normalized_query,
+                )
 
         filtered_products = filter_products_by_entities(
             products_df=self.products_df,

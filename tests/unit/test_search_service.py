@@ -285,3 +285,4 @@ def test_product_search_service_returns_expanded_query_for_vague_query(tmp_path:
     assert "noise cancelling headphones" in response.expanded_terms
     assert "wireless headphones" in response.expanded_terms
     assert response.expanded_query.startswith("noise blocking headset")
+
