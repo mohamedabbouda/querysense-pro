@@ -446,8 +446,11 @@ QuerySense Pro compares retrieval configurations on the same 20-query relevance 
 |---|---:|---:|---:|---:|
 | Structured only | 0.1050 | 0.9500 | 0.8375 | 0.8662 |
 | Structured + BM25 | 0.1100 | 1.0000 | 0.9050 | 0.9275 |
+| Structured + BM25 + query expansion | 0.1100 | 1.0000 | 0.9500 | 0.9631 |
 
 Adding BM25 improved Recall@10 from 0.95 to 1.00 and increased NDCG@10 from 0.8662 to 0.9275.
+
+Adding query expansion further improved ranking quality, increasing MRR from 0.9050 to 0.9500 and NDCG@10 from 0.9275 to 0.9631.
 
 Run experiments with:
 
@@ -458,6 +461,23 @@ python scripts/run_search_experiments.py
 Experiment output is saved to:
 
 - `reports/search_experiments.csv`
+
+### Query expansion
+
+QuerySense Pro includes a rule-based query expansion component for improving retrieval on vague or indirect user queries.
+
+Examples:
+
+| User query | Added expansion terms |
+|---|---|
+| `noise blocking headset` | `wireless headphones`, `noise cancelling headphones`, `headphones` |
+| `something for jogging` | `running shoes` |
+| `phone for daily use` | `smartphone`, `iphone`, `galaxy` |
+| `office work laptop` | `business laptop`, `thinkpad`, `xps` |
+
+The system keeps the original normalized query for intent prediction and entity extraction, but uses the expanded query for BM25 and semantic retrieval.
+
+This keeps structured understanding stable while improving recall and ranking quality during retrieval.
 
 ## Quality checks
 
