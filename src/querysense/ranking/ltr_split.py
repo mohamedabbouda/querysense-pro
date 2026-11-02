@@ -5,7 +5,6 @@ from dataclasses import dataclass
 
 import pandas as pd
 
-
 QUERY_GROUPS = {
     "sony black headphones": "headphones",
     "wireless noise cancelling": "headphones",
