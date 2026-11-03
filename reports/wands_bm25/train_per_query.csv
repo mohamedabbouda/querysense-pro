@@ -1,0 +1,337 @@
+query_id,query,num_candidates,num_exact,num_partial,num_irrelevant,ndcg_at_10
+0,salon chair,3301,39,2976,286,0.8572775237534389
+100,tufted upholstered bed diamond,887,211,601,75,0.8546557236450505
+101,48 in entry table with side by side drawer,283,4,255,24,0.3955630658274016
+104,flour and sugar containers,179,12,166,1,0.625405453887003
+107,front porch furniture sets,309,43,260,6,0.6132349178757017
+108,ayesha curry kitchen,131,81,45,5,0.722411724129684
+11,ombre rug,1428,65,1355,8,1.0
+112,pineapple,271,266,0,5,1.0
+115,peacock,224,202,3,19,1.0
+118,body pillow case,216,94,122,0,1.0
+119,welcome sign,441,158,207,76,0.7544162439074084
+12,large spoon and fork wall decor,225,27,149,49,0.9008240627729516
+120,zodiac pillow,979,33,795,151,0.790079912888246
+121,upholstered bed,2977,726,896,1355,0.9266360779006398
+124,unique coffee tables,1467,324,968,175,0.5589992367574206
+126,leather dining chairs,719,241,437,41,1.0
+127,wine bar,1580,159,120,1301,0.8769836981178636
+128,block coffee table,1455,113,1252,90,1.0
+130,entertainment console,875,187,681,7,0.5861584770675266
+131,kids chair,3479,173,1635,1671,1.0
+132,farmhouse cabinet,1260,42,549,669,0.6505529865347696
+133,outdoor light fixtures,227,170,30,27,0.8146824772118209
+134,black hanging bookshelf,150,3,119,28,0.4187594270972446
+135,low profile loveseat recliner,552,10,138,404,0.46789360942908625
+138,glass doors for bath,172,142,11,19,0.8922097294981223
+140,wire basket with dividers,131,3,122,6,0.4592126063688851
+143,queen wingback chair,244,3,208,33,0.4801696018801446
+144,rug plum,1423,116,1207,100,1.0
+145,liberty hardware francisco,143,32,98,13,0.2334332953725651
+146,laundry vanity cabinet,111,4,106,1,0.6012644158055015
+147,drum picture,425,12,62,351,0.22009176629808014
+148,industrial,249,194,3,52,1.0
+149,mid century modern,173,155,14,4,0.9575861412006988
+150,dumbbells,54,21,0,33,0.6489315753318465
+151,leather chair,3042,630,2195,217,0.5229662341544926
+152,wishbone chair,3286,46,3130,110,0.3049522941194597
+153,bohemian,178,145,8,25,0.9008240627729516
+155,floating bed,2376,8,2114,254,0.18466377862521252
+156,papasan chair frame only,150,19,89,42,0.4285300960240915
+157,velvet chaise,1085,51,493,541,0.8606337550063158
+159,meditation,122,93,3,26,1.0
+160,marble,242,226,3,13,1.0
+162,turquoise chair,3354,23,3139,192,0.30105852466286553
+163,dual monitor stand,94,47,46,1,1.0
+165,kitchen storage shelves,193,69,122,2,0.8545365814817667
+166,feather wall art,111,26,83,2,0.8650111786183292
+167,camper,136,87,0,49,1.0
+169,coffee bar buffet,126,27,98,1,0.4862285967923153
+170,zen,127,99,1,27,1.0
+172,picasso,59,42,0,17,1.0
+173,bedroom accessories,316,4,200,112,0.24957965225166592
+174,star wars rug,90,0,7,83,0.0
+175,basket planter,564,70,233,261,1.0
+177,rustic storage cabinet,378,16,361,1,0.5515377306675132
+179,promo codes or discounts,1,0,1,0,1.0
+18,chrome bathroom 4 light vanity light,1053,34,240,779,0.8017536775903097
+180,outdoor lounge cushions,403,72,330,1,0.7916472565189692
+181,e12/candelabra,122,104,18,0,1.0
+182,penny round tile,98,58,40,0,1.0
+184,sugar canister,185,59,125,1,0.7078087372830465
+185,lunch bag,124,34,12,78,1.0
+186,board game storage cabinet,385,4,378,3,0.919751958403785
+188,"bedroom wall decor floral, multicolored with some teal (prints)",277,8,170,99,0.25937546509542125
+19,gurney  slade 56,14,0,10,4,0.9266360779006401
+194,black frame 22 x 36,293,0,89,204,0.4124497136428909
+195,black freestanding tub  with faucet,110,3,99,8,0.7431286862216818
+196,chabely 5 draw chest,165,0,160,5,1.0
+199,blue faux throw with pillows,384,0,373,11,0.8899541168509599
+2,dinosaur,165,151,7,7,1.0
+20,foutains with brick look,94,12,78,4,0.3017372118768164
+200,ceramic tile sea shell,247,3,241,3,0.7825899669329446
+201,delta trinsic double towel hook in champagne bronze,124,0,98,26,1.0
+203,ge top loading washer 4.5,87,5,78,4,1.0
+204,fleur de lis living candle wall sconce bronze,191,7,167,17,0.5715927245152567
+205,ines shag rug w003096809,93,12,81,0,0.955830517697074
+206,grill cover 73,67,2,57,8,1.0
+207,dull bed with shirt head board,34,0,34,0,1.0
+208,"fawkes 36"" blue vanity",118,0,118,0,1.0
+210,love seat wide faux leather tuxedo arm sofa,1045,9,1031,5,0.4733648861143142
+213,kraus kitchen sink faucet oletto kpf 2820 sfs,271,1,138,132,0.5741027778322887
+214,light wood nightstand with silver accents,225,0,134,91,0.7799082337019199
+216,music plug wall plate,189,8,174,7,0.42707280183811386
+218,wand bunk beds,65,0,65,0,1.0
+219,trinaic towel rod,38,0,38,0,1.0
+220,sheets for twinxl,127,52,45,30,0.7055069625078351
+221,small space dining table and chairs sets,1719,73,1055,591,0.8606337550063158
+223,wisdom stone river 3-3/4,207,1,11,195,0.31613093951531274
+226,power lift chair,316,197,117,2,0.8527809579781418
+229,waterfall faucet,556,133,382,41,1.0
+230,gold,274,228,3,43,1.0
+231,anti fatigue mat,359,307,52,0,1.0
+232,storage dresser,2329,423,151,1755,0.6449784899909481
+233,kelly clarkson light fixtures,156,81,70,5,1.0
+234,artificial orchid arrangement,144,107,37,0,0.9575861412006988
+235,bathroom wastebasket,1368,133,20,1215,1.0
+236,3 piece rug set with runners,2202,29,149,2024,0.6155990504756048
+237,cloud modular sectional,205,4,188,13,0.9108954758022451
+238,outdoor seat/back cushion,318,54,263,1,1.0
+239,bathroom single faucet,573,146,124,303,1.0
+24,wood coffee table set by storage,2559,84,2015,460,0.6673155115661743
+240,eiffel tower wall art,68,33,31,4,0.9575861412006988
+242,accent leather chair,283,175,106,2,0.9368077570869661
+243,indoor multi tiered plant stand,209,135,59,15,0.7117879118193368
+245,anchor decor,485,57,113,315,0.9266360779006398
+246,clear shower curtain,252,12,113,127,0.5527911281591381
+247,beaded curtains,961,40,637,284,0.7476007959739591
+248,surge protector,104,39,5,60,1.0
+249,bistro table and chairs,197,124,69,4,0.955830517697074
+25,sunflower,242,227,4,11,1.0
+250,multi color rug,131,96,21,14,1.0
+251,coffee container,1483,90,46,1347,0.7511052630962824
+252,accent chairs living room,443,100,258,85,1.0
+253,antique brass faucet,117,5,111,1,0.5863418551739393
+254,comfortable accent chair,201,131,67,3,0.7540962185742314
+255,desk and chair set,217,107,96,14,1.0
+256,high weight capacity bunk beds,138,68,59,11,0.9575861412006988
+257,living room coffee table sets,1834,132,1209,493,0.8010066431488296
+258,breakfast bar table,126,58,67,1,0.9537125187088151
+259,nursery end table,634,0,633,1,1.0
+26,leather chairs,3746,876,2411,459,1.0
+260,retractable side awning,68,26,22,20,0.9048032373092418
+261,semi flush foyer light,175,125,50,0,0.8532721558012798
+262,bathroom freestanding cabinet,138,87,49,2,0.955830517697074
+263,small curtain rods,291,75,50,166,0.5655687916209089
+264,cortez pillow,897,15,584,298,1.0
+265,candace wingback upholstered bed,690,0,675,15,1.0
+266,champagne velvet desk chair,353,1,349,3,0.6943559465628251
+267,dolomite subway tile,154,2,152,0,1.0
+268,betty resin free standing umbrella,311,1,83,227,0.8125952066495403
+269,donaldson teak couch,99,0,93,6,1.0
+27,outdoor welcome rug,344,100,242,2,0.850662958989883
+272,oliver parsons,115,0,86,29,0.3725907541108227
+273,stainless steel free standing shower caddy,542,4,88,450,0.7391939478830596
+274,gowdy height adjustable standing desk,331,1,95,235,0.9558245273890439
+275,hinged square ottoman,127,13,112,2,0.6192265393558442
+277,barstool patio sets,256,44,152,60,0.3866681554447975
+280,johan desk by laurel foundry,116,0,106,10,1.0
+284,family lamp,331,0,274,57,1.0
+285,"48"" sliding single track , barn door for laundry",183,7,108,68,0.38441023776109734
+286,hitchcock mid-century wall shelf,256,0,171,85,1.0
+287,cover set for outdoor furniture,406,45,60,301,0.3775028156362593
+288,round outdoor patio cover,272,0,103,169,1.0
+289,coma inducer comforter king set,251,27,205,19,1.0
+29,bathroom vanity knobs,802,138,0,664,0.1388624438735545
+292,decorative white pillow,204,12,134,58,0.36888848236143
+293,wood floor protector mat,102,13,60,29,0.5432534204450872
+295,end table between recliners,139,6,128,5,0.471265545818779
+296,zakariyah twin platform,171,1,169,1,0.9490593244271376
+297,seat cushions desk,487,8,91,388,0.5013883115874349
+298,small woven pouf,98,9,89,0,0.5350626885823189
+3,turquoise pillows,997,55,717,225,0.5439452043669725
+30,3 1/2 inch drawer pull,549,88,252,209,0.8043628744017064
+300,animal print handmade tufted wool beige/black area rug by allmodern,1114,2,1110,2,0.5821032065260976
+303,hawaii vintage art,72,8,58,6,0.8385596825865292
+304,merlyn 6,759,0,35,724,0.08514311764162098
+307,real touch roses floral arrangements in glass vase,189,6,167,16,0.5205303585137283
+309,moen 5995 arbor one,72,0,26,46,0.5352543167750639
+310,meade mirror,589,4,433,152,1.0
+311,odum velvet,571,4,537,30,0.7729659437246869
+312,coat rack for bedroom,119,10,109,0,0.5157248465128909
+313,malachi sled,105,3,70,32,0.9338473747953052
+315,medium clips,316,4,58,254,0.9909331158293705
+316,rolande heavy duty power lift assist recliner,406,1,330,75,1.0
+317,hulmeville writing desk with hutch,340,2,336,2,1.0
+32,dark gray dresser,211,3,179,29,0.6452678954743163
+320,blaylock bookcase headboard,93,1,77,15,1.0
+323,hub leaning full length mirror,126,1,124,1,1.0
+324,chase utility laundry cart,113,1,104,8,1.0
+326,bowersville ladder writing desk,284,1,282,1,1.0
+327,kohler purist brushed bronze,115,8,80,27,0.41847563322762454
+328,golub dining table,659,1,646,12,1.0
+329,wayfair tension rod,83,2,80,1,0.7483462289656805
+33,non slip shower floor tile,669,125,260,284,0.3823076405173107
+331,upholstered girls bed,533,52,478,3,0.6101871780591607
+332,attleboro drum coffee table,1410,1,1404,5,1.0
+333,stainless steel colander set,315,21,62,232,0.6241410282065162
+335,canadian,81,42,0,39,1.0
+336,mystic swivel,360,1,342,17,0.6094373526516167
+339,ruckus chair,3044,6,98,2940,0.7709690078300999
+340,berenice 4 storage cabinet,505,3,402,100,1.0
+341,canvas map art,199,22,177,0,1.0
+342,brendon counter stool,478,2,475,1,1.0
+343,navy and peach bedding,116,0,115,1,1.0
+345,oriental vanity,1148,0,757,391,0.06625422345438903
+346,nesting tray set,110,19,69,22,0.9134166588977729
+347,olive green console table,577,0,571,6,1.0
+348,one alium way,2,0,2,0,1.0
+349,mud room sign,98,5,90,3,0.6949848471577839
+351,white bathroom vanity black hardware,727,0,705,22,1.0
+352,amarillo,81,29,0,52,1.0
+353,pennfield playhouse,54,1,24,29,1.0
+356,platform bed side table,960,0,942,18,0.9216017310213247
+357,tall free standing pet gate,355,34,25,296,0.8356329630349425
+358,sliding closet mirror,116,4,109,3,0.6242216621763074
+359,french molding,203,8,137,58,0.89577947614221
+360,huntsville sectional sofa,125,0,125,0,1.0
+361,kisner,98,25,0,73,1.0
+362,brushed gold wall decor,245,0,224,21,1.0
+363,fortunat coffee table,1380,1,1379,0,0.6943559465628251
+364,croscill ashton,114,0,45,69,0.914856882358379
+366,drudge report,1,0,0,1,0.0
+367,wooden chair outdoor,202,42,154,6,0.7350043202545055
+368,pasta tools,143,81,39,23,1.0
+369,wrought tv stand,362,2,358,2,0.5821032065260976
+37,bar stool 24 inches height,875,110,713,52,0.5151134371263187
+370,rug for teen room,3,1,2,0,0.8213137146137828
+371,milk cow chair,112,8,89,15,0.07532740953953872
+374,sinks bed frame,170,0,141,29,0.2032389337527008
+376,island estate coffee table,1430,3,1424,3,0.928816472271901
+377,glinda upholstered bench,134,0,134,0,1.0
+378,cliffside 5 light candle style drum chandelier,580,0,561,19,1.0
+38,calvin patio chair,255,1,211,43,1.0
+380,gravity feeder,124,6,39,79,0.9227686307727648
+381,farmhouse hood vent,80,0,80,0,1.0
+382,counter top one cup hot water dispenser,89,4,51,34,0.470018260101859
+383,minnestrista,3,0,3,0,1.0
+385,mom urn,55,0,27,28,1.0
+386,alter furniture,298,0,197,101,0.33013764944712026
+387,self enclosed planters,92,0,92,0,1.0
+389,brush nickel faucet bathroom,337,157,166,14,0.7459104305853199
+390,cushion replacement insert,61,0,61,0,1.0
+392,china clock,368,0,345,23,0.5750739861833288
+394,gray leather cocktail table,117,0,103,14,0.9216017310213247
+395,pantry grey,74,0,16,58,0.6339753813071974
+396,alyse 8 light,136,1,131,4,1.0
+397,maryford queen tufted bed,493,0,491,2,1.0
+399,12v dirt bike,85,0,68,17,1.0
+4,chair and a half recliner,239,23,167,49,0.3333333333333333
+40,elegant executive chair,166,40,124,2,0.7877872241459625
+400,small ladies rocker swivel recliner,24,0,24,0,1.0
+401,glass lsmp shades,55,18,36,1,0.6711891340580581
+404,large cushion outdoor chair,564,4,518,42,0.470018260101859
+406,refrigerator with ice an water in door,98,22,55,21,0.3775028156362593
+407,huge bookcase,331,11,320,0,0.48006117753205335
+408,girl reading statue,102,31,71,0,0.9074250374176303
+409,teal chair,3393,40,3020,333,0.10174496131323371
+410,pool floats,281,58,38,185,0.371716343717212
+411,outdoor clock,1566,85,264,1217,1.0
+413,burruss patio sectional with cushions,599,1,560,38,1.0
+414,shower hooks,914,165,210,539,1.0
+415,toilet paper stand,151,75,48,28,0.955830517697074
+417,twin bed frame,567,188,374,5,0.613478151197052
+418,writing desk,1123,608,390,125,0.9575861412006988
+419,living room ideas,21,16,5,0,1.0
+421,dining room tables,758,649,71,38,1.0
+422,ergonomic chair,3328,428,2636,264,1.0
+423,wall shelves,3034,285,134,2615,1.0
+424,wayfair comforters,618,4,354,260,0.3941142141603876
+425,side table with storage,742,56,663,23,0.8743705652481897
+426,outdoor storage,3254,223,1001,2030,0.5309999066793252
+428,kitchen storage cabinet,537,66,408,63,0.8438042492186786
+432,butcher block island,176,42,132,2,0.9074250374176303
+433,trundle daybed,273,113,129,31,1.0
+434,bathroom lighting,3530,226,1146,2158,0.955830517697074
+435,shoe closet,443,47,308,88,0.585535533784113
+436,full bed with trundle,214,46,162,6,0.8632555551147043
+437,kitchen islands with seating,195,47,132,16,0.3333333333333333
+44,chrome shower head and valve,219,33,184,2,0.5432534204450872
+440,wood bar stools,777,255,508,14,0.6512174690146914
+441,desk for kids,1385,78,919,388,0.8943286401726793
+442,above toilet cabinet,1137,70,339,728,0.8037557469512371
+443,patio design,409,352,4,53,1.0
+445,chaise lounge couch,350,170,154,26,1.0
+447,tall buffet cabinet,212,3,205,4,0.5159958223394445
+449,living room designs,172,164,1,7,1.0
+45,70s inspired furniture,169,20,87,62,0.28599364760745766
+451,aiden black velvet bed,111,0,101,10,0.914856882358379
+453,midcentury tv unit,118,25,93,0,0.4698894983457272
+454,carpet 5x6,110,0,80,30,0.3030820301798826
+455,deer coat hooks,110,2,107,1,0.5821032065260976
+456,wall design shelf,221,76,119,26,0.8169680738235194
+458,bubble guppies chair,120,0,95,25,0.6399441431116327
+459,tye dye duvet cover,205,19,186,0,0.8566545804700255
+46,beach blue headboard,104,5,97,2,0.30235269487638083
+460,small wardrobe grey,111,7,77,27,0.30089299547742615
+461,luau string lights,61,4,54,3,1.0
+462,large bases,2,0,1,1,1.0
+464,cake cutlery,157,85,7,65,0.9363792118010483
+465,white abstract,2,1,1,0,0.7967075809905066
+466,rock climbing wall kids,93,1,32,60,0.39146986820069185
+467,town & country living curtains,150,0,150,0,1.0
+468,glow in the dark silent wall clock,294,4,280,10,0.7542889046155734
+47,porcelain loaf pan,105,0,100,5,1.0
+470,elephant framed,638,45,240,353,1.0
+472,window wall accent,108,47,53,8,0.9537125187088151
+473,chair pillow cushion,286,126,143,17,0.9537125187088151
+474,48 inch bathroom vanity with trough sink,784,0,709,75,1.0
+475,rattan truck,70,0,33,37,1.0
+476,hardwood beds,2224,639,1247,338,0.3817050765291894
+478,worn leather office chair,445,1,425,19,0.6943559465628251
+479,garage door mail slot,83,0,55,28,1.0
+48,arwen table lamp,282,1,281,0,1.0
+480,pictures to hang over fireplace,3,0,3,0,1.0
+483,rustic twig,248,4,205,39,0.5591227842996136
+484,nespresso vertuo next premium by breville with aeroccino,53,0,26,27,1.0
+486,54 in bench cushion,87,0,87,0,1.0
+50,tufted chair with gold legs,404,28,363,13,0.6961475758779746
+51,kohen 5 drawer dresser,595,1,587,7,1.0
+52,westling coffee table,1433,0,1420,13,1.0
+53,carolyn console table,610,0,610,0,1.0
+54,wayfair sleep zippered,143,5,133,5,0.6267490438585043
+55,tollette teal outdoor rug,171,1,169,1,1.0
+56,royal blue counter height chairs,344,0,231,113,0.6578986223737446
+58,medium size chandelier,164,63,99,2,0.41055839583179465
+59,broadway lever,165,43,112,10,1.0
+60,capricorn chest,332,3,321,8,0.6246153756761529
+61,overstreet rustic pub stools,162,1,161,0,1.0
+62,7qt slow cooker,157,9,139,9,0.3480974911723065
+64,zachary 72.5,77,1,73,3,1.0
+66,novara pergola,69,1,63,5,1.0
+67,osgood mirror,587,0,504,83,1.0
+68,nautical platters,204,89,79,36,0.6756721097144781
+7,driftwood mirror,603,23,512,68,0.9537125187088151
+70,annex dresser,504,1,502,1,0.9035800363421508
+72,fold in half table,174,85,78,11,0.528944265515758
+73,certified international melamine,181,0,159,22,1.0
+75,sheffield home bath set,231,4,133,94,0.3771289261794695
+77,sancroft armchair,661,1,660,0,0.6943559465628251
+79,palram harmony greenhouses,122,0,105,17,0.199306233590118
+8,home sweet home sign,105,25,69,11,0.9095430364058891
+80,7 draw white dresser,198,39,157,2,0.5831107372509855
+81,orren ellis l shape desk,233,75,144,14,0.5920900340550844
+82,bathroom vanity with counter space,668,53,601,14,0.5055531673265647
+83,wall art fiji,103,0,97,6,0.9363792118010483
+84,full metal bed rose gold,299,1,208,90,0.044175472610956126
+86,aloe vera plant pot,142,15,123,4,0.3333333333333333
+88,rose gold lounge,159,1,107,51,0.0
+89,whimsical solar lights,142,68,67,7,0.7367599437581304
+9,coffee table fire pit,1516,74,1436,6,1.0
+91,industrial pipe dining  table,686,8,662,16,0.2998469039372338
+92,antique silver entry table,170,0,166,4,0.7975167679274937
+93,outdoor sectional dining,233,58,163,12,0.5211050586064611
+94,kohler whitehaven farmhouse kitchen sink,197,4,146,47,0.470018260101859
+95,entertainment stand end table,820,49,766,5,0.4423609244135308
+96,bar room wall decor,384,75,207,102,1.0
+98,gracie oaks 62 oller 14 ceiling fan,124,0,113,11,1.0

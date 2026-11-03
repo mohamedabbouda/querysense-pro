@@ -1,0 +1,73 @@
+query_id,query,num_candidates,num_exact,num_partial,num_irrelevant,ndcg_at_10
+1,smart coffee table,1436,8,1410,18,0.42707280183811386
+10,king poster bed,177,21,155,1,0.8501591578697534
+103,kitchen anti fatigue mats,368,230,137,1,0.955830517697074
+106,bed risers,2245,36,59,2150,0.9134166588977729
+111,delta trinsic,161,69,86,6,1.0
+114,geralyn upholstered storage platform bed,1252,3,1226,23,0.7431286862216818
+116,brockham solid blackout thermal grommet curtain panels,595,0,581,14,1.0
+117,tall storage cabinet,430,128,293,9,0.676189500953485
+123,entrance table,4329,187,2093,2049,0.39258639327000416
+125,boho bed frame,283,1,249,33,0.6416728933999544
+13,outdoor privacy wall,122,46,11,65,0.8088720434739952
+142,kitchen wooden stand,203,5,70,128,0.27360128323574445
+158,led nightstand,834,44,717,73,0.8777267965010666
+171,nectar queen mattress,99,0,99,0,1.0
+178,almost heaven sauna,74,24,29,21,0.39265195375448353
+189,big basket for dirty cloths,73,31,41,1,0.4199166744355605
+190,benjiamino faux leather power lift chair,792,5,706,81,0.4351869256057173
+191,biycicle plant stands,217,0,217,0,1.0
+202,full mattress padded liner,83,45,38,0,0.5151134371263187
+209,door pulls bronze matte 4 inch,198,0,126,72,0.7467045958894682
+21,living curtains pearl,127,1,126,0,0.7827068917847374
+212,nettie 5 pc bar set,358,2,192,164,0.694104393496533
+222,small loving roomtables,77,31,5,41,0.6300426811446145
+224,twin over full bunk beds cool desins,73,22,51,0,0.43900469316065394
+225,white splashproof shiplap wallpaper,45,2,31,12,0.7665241578325118
+227,owl,203,176,0,27,1.0
+228,bee,244,178,3,63,1.0
+270,edge chair mat,95,42,52,1,1.0
+278,parakeet toy,112,7,70,35,0.20110552722322647
+28,rooster decor,725,175,125,425,1.0
+281,brunk ship wheel,90,1,50,39,1.0
+282,grantola wall mirror,130,1,128,1,1.0
+306,mobley zero gravity adjustable bed with wireless remote,114,2,88,24,0.7695900200452496
+334,itchington butterfly,122,6,44,72,0.7931016812718312
+337,iittala bowl,201,39,82,80,1.0
+344,ottoman bed queen,116,0,114,2,0.9305687780632227
+354,tressler rug,1402,0,1372,30,1.0
+355,argenteuil,59,30,0,29,1.0
+365,gas detector,130,9,14,107,0.6320993927292414
+372,verden callan,120,1,47,72,0.9235889866407062
+375,pastel pink desk chair,211,0,207,4,1.0
+379,urban outfitters duvet,71,0,71,0,1.0
+384,dining table vinyl cloth,687,20,41,626,1.0
+388,outdoor sectional doning,64,0,60,4,1.0
+39,door jewelry organizer,149,31,118,0,0.4748175773152763
+391,"writing desk 48""",229,8,221,0,0.523500205421225
+393,propane gas dryer,96,0,75,21,0.8630152897016883
+398,super bright lights,107,19,64,24,0.7799082337019198
+402,modern farmhouse lighting semi flush mount,251,7,219,25,0.4353478413426545
+412,jennie tufted upholstered low profile platform bed,1090,1,1043,46,0.6943559465628251
+416,wayfair coffee table,1447,0,1443,4,1.0
+420,tile backsplash,1013,766,224,23,1.0
+429,gray dresser,860,94,419,347,0.541366051481187
+431,shoe bench entryway,160,75,79,6,1.0
+446,card table,4326,57,3438,831,0.6673665289563459
+448,bed side table,203,81,117,5,0.3333333333333333
+452,day bed indian,105,0,105,0,1.0
+463,bistro sets patio,274,139,70,65,1.0
+471,adjustable height artist stool,310,1,201,108,0.6943559465628251
+481,emma headboard,219,1,210,8,0.3028860783621332
+482,48 inch kitchen hood,104,12,87,5,1.0
+5,sofa with ottoman,1344,179,1130,35,1.0
+63,monthly calendar,115,72,34,9,1.0
+65,gnome fairy garden,156,38,115,3,0.5958389584307145
+69,wall sconce with usb port,235,13,188,34,0.40266587231719575
+71,infant girl crib bedding,139,47,91,1,0.47879675185156656
+74,serta kleinmon,87,3,81,3,0.7565530591152705
+78,dorel vanity,948,3,850,95,0.40242939039832576
+85,3/4 size mattress,152,0,106,46,0.39375843764607193
+87,vlad modular sectional,221,0,221,0,1.0
+90,filaret outdoor sofa,242,0,241,1,1.0
+99,arched christmas tree,121,0,111,10,1.0

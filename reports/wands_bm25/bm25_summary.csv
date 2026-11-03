@@ -1,0 +1,3 @@
+split,queries,judgments,mean_ndcg_at_10
+train,336,165875,0.7669134462345627
+validation,72,34250,0.7635078198064345
