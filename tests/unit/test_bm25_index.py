@@ -85,3 +85,46 @@ def test_bm25_index_adds_search_text_column() -> None:
 
     assert "search_text" in index.products_df.columns
     assert "sony wh-1000xm4 wireless headphones" in index.products_df.loc[0, "search_text"]
+
+def test_score_query_matches_index_scores() -> None:
+    import pandas as pd
+
+    from querysense.retrieval.bm25_index import BM25ProductIndex
+
+    products = pd.DataFrame(
+        {
+            "product_id": ["p1", "p2", "p3", "p4"],
+            "title": [
+                "office chair",
+                "wooden desk",
+                "dining table",
+                "ergonomic office chair",
+            ],
+            "description": [
+                "comfortable seating",
+                "home furniture",
+                "kitchen furniture",
+                "adjustable seating",
+            ],
+        }
+    )
+
+    bm25_index = BM25ProductIndex(products)
+
+    scores = bm25_index.score_query("office chair")
+
+    assert len(scores) == len(products)
+
+    expected = bm25_index.index.get_scores(
+        ["office", "chair"]
+    )
+
+    assert scores.tolist() == expected.tolist()
+
+    # An unmatched query must still produce a score for every product.
+    unmatched_scores = bm25_index.score_query(
+        "xyzunmatchedtoken"
+    )
+
+    assert len(unmatched_scores) == len(products)
+    assert all(score == 0 for score in unmatched_scores)

@@ -1,7 +1,9 @@
+
 from __future__ import annotations
 
 from dataclasses import dataclass
 
+import numpy as np
 import pandas as pd
 from rank_bm25 import BM25Okapi
 
@@ -11,7 +13,7 @@ from querysense.utils.text import normalize_text_basic
 
 @dataclass
 class BM25ProductIndex:
-    """BM25 index for product keyword retrieval."""
+    """BM25 index for product keyword retrieval and scoring."""
 
     products_df: pd.DataFrame
     search_text_column: str = "search_text"
@@ -21,11 +23,26 @@ class BM25ProductIndex:
             self.products_df,
             output_column=self.search_text_column,
         )
+
         self.tokenized_corpus = [
             _tokenize(text)
-            for text in self.products_df[self.search_text_column].tolist()
+            for text in self.products_df[
+                self.search_text_column
+            ].tolist()
         ]
+
         self.index = BM25Okapi(self.tokenized_corpus)
+
+    def score_query(self, query: str) -> np.ndarray:
+        """Return BM25 scores for every indexed product.
+
+        The returned scores follow the row order of self.products_df.
+        Scores are not filtered or truncated.
+        """
+        normalized_query = normalize_text_basic(query)
+        query_tokens = _tokenize(normalized_query)
+
+        return self.index.get_scores(query_tokens)
 
     def search(
         self,
@@ -33,24 +50,26 @@ class BM25ProductIndex:
         top_k: int = 10,
     ) -> pd.DataFrame:
         """Search products using BM25 keyword ranking."""
-        normalized_query = normalize_text_basic(query)
-        query_tokens = _tokenize(normalized_query)
-
-        scores = self.index.get_scores(query_tokens)
+        scores = self.score_query(query)
 
         scored_df = self.products_df.copy()
         scored_df["bm25_score"] = scores
 
         scored_df = scored_df[scored_df["bm25_score"] > 0]
 
-        return scored_df.sort_values(
-            by="bm25_score",
-            ascending=False,
-        ).head(top_k).reset_index(drop=True)
+        return (
+            scored_df.sort_values(
+                by="bm25_score",
+                ascending=False,
+            )
+            .head(top_k)
+            .reset_index(drop=True)
+        )
 
 
 def _tokenize(text: str) -> list[str]:
     normalized_text = normalize_text_basic(text)
+
     return [
         token
         for token in normalized_text.split()
